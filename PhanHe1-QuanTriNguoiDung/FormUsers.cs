@@ -33,7 +33,8 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            FormAddUser formAddUser = new FormAddUser();
+            formAddUser.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

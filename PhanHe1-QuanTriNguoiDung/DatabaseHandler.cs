@@ -75,6 +75,28 @@ namespace PhanHe1_QuanTriNguoiDung
             }
         }
 
+        public static bool AddNewUser(string username, string password)
+        {
+            if (!IsConnected() || string.IsNullOrEmpty(username))
+            {
+                return false;
+            }
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"create user {username} ";
+            if (!string.IsNullOrEmpty(password))
+            {
+                str += $"identified by \"{password}\"";
+            }
+
+            int res = ExecuteNonQuery(str);
+
+            return res != -1;
+           
+        }
+
         public static void Disconnect()
         {
             if (IsConnected())
