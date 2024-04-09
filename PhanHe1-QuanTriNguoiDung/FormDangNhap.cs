@@ -27,27 +27,19 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            OracleConnectionStringBuilder builder = new OracleConnectionStringBuilder();
+            bool connRes = DatabaseHandler.Connect(usernameTextBox.Text, passwordTextBox.Text);
 
-            builder.DataSource = "localhost";
-            builder.UserID = usernameTextBox.Text.Trim();
-            builder.Password = passwordTextBox.Text.Trim();
-
-            string connectionString = builder.ConnectionString;
-
-            try
+            if (connRes)
             {
-                OracleConnection connection = new OracleConnection(connectionString);
-                connection.Open();
-
                 ManHinhChinh mainForm = new ManHinhChinh();
                 mainForm.Show();
 
                 this.Hide();
-            } catch (Exception ex)
+            } else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Connection Faild");
             }
+        
         }
     }
 }

@@ -27,6 +27,7 @@ namespace PhanHe1_QuanTriNguoiDung
         private void ManHinhChinh_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+            DatabaseHandler.Disconnect();
         }
 
         private void FormUsers_FormClosed(object sender, FormClosedEventArgs e)
