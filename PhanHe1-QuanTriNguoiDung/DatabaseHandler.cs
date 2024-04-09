@@ -1,18 +1,55 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace PhanHe1_QuanTriNguoiDung
 {
     public static class DatabaseHandler
     {
         private static string _connectionString = "";
-        private static OracleConnection _connection; 
+        private static OracleConnection _connection;
 
-        //public static DataTable executeQuery(string query)
-        //{
+        public static DataTable ExecuteQuery(string query)
+        {
+            DataTable result = new DataTable();
 
-        //}
+            try
+            {
+                if (IsConnected())
+                {
+                    OracleCommand cmd = new OracleCommand(query, _connection);
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    result.Load(reader);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Truy vấn lỗi: " + ex.Message);
+            }
+
+            return result;
+        }
+
+        public static int ExecuteNonQuery(string nonQueryStr)
+        {
+            try
+            {
+                if (IsConnected())
+                {
+                    OracleCommand cmd = new OracleCommand(nonQueryStr, _connection);
+                    return cmd.ExecuteNonQuery();
+                } else
+                {
+                    return -1;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Truy vấn lỗi: " + ex.Message);
+                return -1;
+            }
+        }
 
         public static bool Connect(string username, string password)
         {
@@ -40,10 +77,19 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static void Disconnect()
         {
-            if (_connection != null && _connection.State != ConnectionState.Open)
+            if (IsConnected())
             {
                 _connection.Close();
             }
+        }
+
+        public static bool IsConnected()
+        {
+            if (_connection != null)
+            {
+                return _connection.State == ConnectionState.Open;
+            }
+            return false;
         }
     }
 }
