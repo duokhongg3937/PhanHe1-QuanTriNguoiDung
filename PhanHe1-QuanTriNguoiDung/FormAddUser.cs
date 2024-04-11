@@ -15,13 +15,23 @@ namespace PhanHe1_QuanTriNguoiDung
             string username = usernameTextBox.Text.Trim();
             string password = passwordTextBox.Text.Trim();
 
-            if (DatabaseHandler.AddNewUser(username, password))
+            if (!DatabaseHandler.IsUserExists(username))
             {
-                MessageBox.Show($"Thành công tạo mới người dùng {username}");
-                this.Close();
-            } else
+                bool result = DatabaseHandler.AddNewUser(username, password);
+
+                if (result)
+                {
+                    MessageBox.Show($"Thành công tạo mới người dùng {username}");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể tạo mới người dùng");
+                }
+            } 
+            else
             {
-                MessageBox.Show($"Username hoặc password không hợp lệ!");
+                MessageBox.Show("Tên người dùng đã tồn tại");
             }
         }
     }

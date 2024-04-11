@@ -90,11 +90,36 @@ namespace PhanHe1_QuanTriNguoiDung
             {
                 str += $"identified by \"{password}\"";
             }
+            ExecuteNonQuery(str);
 
-            int res = ExecuteNonQuery(str);
+            str = $"grant connect to {username}";
+            ExecuteNonQuery(str);
 
-            return res != -1;
-           
+            return true;
+        }
+
+        public static bool DropUser(string username)
+        {
+            if (!IsConnected() || string.IsNullOrEmpty(username))
+            {
+                return false;
+            }
+
+            if (!IsUserExists(username)) { return false; }
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"drop user {username} cascade";
+            ExecuteNonQuery(str);
+
+            return true;
+        }
+
+        public static bool IsUserExists(string username)
+        {
+            DataTable users = ExecuteQuery($"select * from DBA_USERS where USERNAME = '{username}' ");
+            return users.Rows.Count > 0;
         }
 
         public static void Disconnect()

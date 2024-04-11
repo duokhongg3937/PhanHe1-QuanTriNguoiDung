@@ -58,6 +58,7 @@
             // usernameTextBox
             // 
             this.usernameTextBox.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.usernameTextBox.HideSelection = false;
             this.usernameTextBox.Location = new System.Drawing.Point(118, 87);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(215, 31);
@@ -70,6 +71,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(114, 40);
             this.btnAdd.TabIndex = 11;
+            this.btnAdd.TabStop = false;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -97,6 +99,7 @@
             this.MinimizeBox = false;
             this.Name = "FormAddUser";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm mới người dùng";
             this.ResumeLayout(false);
             this.PerformLayout();

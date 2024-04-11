@@ -39,7 +39,29 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (userGridView.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 dòng user bất kỳ để xóa");
+                return;
+            } else
+            {
+                int selectedIndex = userGridView.SelectedRows[0].Index;
 
+                if (userGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+                {
+                    DataRow selectedRow = selectedDataRowView.Row;
+                    string username = (string)selectedRow["USERNAME"];
+
+                    DialogResult res = MessageBox.Show($"Bạn đã chọn user: {username} \n\n\n Bạn có chắc chắn muốn xóa user này?",
+                        "Xác nhận xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (res == DialogResult.Yes)
+                    {
+                        DatabaseHandler.DropUser(username);
+                        MessageBox.Show($"Thành công xóa user {username}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
