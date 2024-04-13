@@ -102,6 +102,32 @@ namespace PhanHe1_QuanTriNguoiDung
             return true;
         }
 
+        public static bool AddNewRole(string rolename, string password)
+        {
+            if (!IsConnected() || string.IsNullOrEmpty(rolename))
+            {
+                return false;
+            }
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"create role {rolename} ";
+            if (!string.IsNullOrEmpty(password))
+            {
+                str += $"identified by \"{password}\"";
+            }
+            ExecuteNonQuery(str);
+
+            //str = $"grant connect to {rolename}";
+            //ExecuteNonQuery(str);
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
+            return true;
+        }
+
         public static bool DropUser(string username)
         {
             if (!IsConnected() || string.IsNullOrEmpty(username))
@@ -174,6 +200,16 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllUsersQuery);
+
+            return dataTable;
+        }
+
+        public static DataTable GetAllRoles()
+        {
+            string selectAllRolesQuery = "SELECT * FROM DBA_ROLES";
+
+            DataTable dataTable = DatabaseHandler
+                .ExecuteQuery(selectAllRolesQuery);
 
             return dataTable;
         }
