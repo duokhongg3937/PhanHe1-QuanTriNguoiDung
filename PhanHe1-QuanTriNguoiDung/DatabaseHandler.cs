@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace PhanHe1_QuanTriNguoiDung
@@ -170,6 +171,7 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             string selectAllUsersQuery = "select USERNAME, USER_ID, EXPIRY_DATE, CREATED, PROFILE  " +
                 "from DBA_USERS where ACCOUNT_STATUS = 'OPEN'";
+
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllUsersQuery);
 

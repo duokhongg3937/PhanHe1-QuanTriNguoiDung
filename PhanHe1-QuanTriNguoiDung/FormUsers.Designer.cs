@@ -64,6 +64,7 @@
             this.userGridView.RowTemplate.Height = 24;
             this.userGridView.Size = new System.Drawing.Size(1175, 600);
             this.userGridView.TabIndex = 1;
+            this.userGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userGridView_CellContentClick);
             // 
             // btnAdd
             // 
