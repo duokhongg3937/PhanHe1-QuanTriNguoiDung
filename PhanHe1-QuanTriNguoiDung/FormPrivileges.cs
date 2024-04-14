@@ -16,7 +16,7 @@ namespace PhanHe1_QuanTriNguoiDung
         public FormPrivileges()
         {
             InitializeComponent();
-            
+
         }
         // query mặc định
         private string query = "SELECT t.* FROM DBA_TAB_PRIVS t WHERE t.GRANTEE ";
@@ -25,37 +25,10 @@ namespace PhanHe1_QuanTriNguoiDung
         private void FormPrivileges_Load(object sender, EventArgs e)
         {
             string selectAllPrivilegesQuery = query + condition;
-            
+
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
             userGridView.DataSource = dataTable;
-
-            #region get data for combo box
-            // all users for combo box
-
-            listUsers = new BindingList<string>(DatabaseHandler.getListUsers());
-            userComboBox.DataSource = listUsers;
-
-
-            // all system privileges
-            listSystemPrivs = new BindingList<string>(DatabaseHandler.getSystemPrivs());
-            sysPrivComboBox.DataSource = listSystemPrivs;
-
-            // all object privileges
-            listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
-            objPrivComboBox.DataSource = listObjectPrivs;
-
-
-            // all tables
-            listTables = new BindingList<string>(DatabaseHandler.getTables());
-            tablePrivComboBox.DataSource = listTables;
-
-
-            // all roles
-            listRoles = new BindingList<string>(DatabaseHandler.getRoles());
-            rolePrivComboBox.DataSource = listRoles;
-
-            #endregion
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -100,81 +73,6 @@ namespace PhanHe1_QuanTriNguoiDung
                 .ExecuteQuery(selectAllPrivilegesQuery);
             userGridView.DataSource = dataTable;
         }
-
-        public BindingList<String> listUsers;
-        public BindingList<String> listSystemPrivs;
-        public BindingList<String> listObjectPrivs;
-        public BindingList<string> listTables;
-        public BindingList<String> listRoles;
-
-
- 
-
-        private void userComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sysPrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void objPrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tablePrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rolePrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void colTablePrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void colColPrivComboBox_selectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void selectCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void updateCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void confirmGrantBtn_clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void withGrantOptCheckBox_checkedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userComboBox_DropDownOpened(object sender, EventArgs e)
-        {
-            // Thay đổi màu nền khi dropdown mở
-            userComboBox.ForeColor = Color.Red;
-        }
-
-        private void userComboBox_DropDownClosed(object sender, EventArgs e)
-        {
-            // Thay đổi màu nền khi dropdown đóng
-            userComboBox.ForeColor = Color.Red;
-        }
     }
 }
+

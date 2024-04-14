@@ -89,6 +89,12 @@
     <Compile Include="FormAddRole.Designer.cs">
       <DependentUpon>FormAddRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGrantPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGrantPermissions.Designer.cs">
+      <DependentUpon>FormGrantPermissions.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUpdateUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddRole.resx">
       <DependentUpon>FormAddRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGrantPermissions.resx">
+      <DependentUpon>FormGrantPermissions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateUser.resx">
       <DependentUpon>FormUpdateUser.cs</DependentUpon>

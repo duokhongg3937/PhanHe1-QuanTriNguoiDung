@@ -208,7 +208,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                if (IsConnected())
+                //if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
@@ -246,7 +246,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                if (IsConnected())
+                //if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
@@ -284,7 +284,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                if (IsConnected())
+                //if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
@@ -323,7 +323,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                if (IsConnected())
+                //if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
@@ -360,7 +360,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                if (IsConnected())
+                //if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))

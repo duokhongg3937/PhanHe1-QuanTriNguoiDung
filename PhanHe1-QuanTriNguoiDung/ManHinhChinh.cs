@@ -8,6 +8,7 @@ namespace PhanHe1_QuanTriNguoiDung
         FormUsers formUsers;
         FormRoles formRoles;
         FormPrivileges formPrivileges;
+        FormGrantPermissions formGrantPermissions;
 
         public ManHinhChinh()
         {
@@ -93,6 +94,27 @@ namespace PhanHe1_QuanTriNguoiDung
                 form.MdiParent = this;
                 form.Show();
             }
+        }
+
+        private void FormGrantPermissions_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formGrantPermissions = null;
+        }
+
+        private void grantPermBtn_clicked(object sender, EventArgs e)
+        {
+            if (formGrantPermissions == null || formGrantPermissions.IsDisposed)
+            {
+                formGrantPermissions = new FormGrantPermissions();
+                formGrantPermissions.FormClosed += FormGrantPermissions_FormClosed;
+            }
+
+            showForm(formGrantPermissions);
+        }
+
+        private void ManHinhChinh_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
