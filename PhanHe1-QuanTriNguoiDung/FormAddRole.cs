@@ -13,16 +13,16 @@ namespace PhanHe1_QuanTriNguoiDung
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string rolename = rolenameTextBox.Text.Trim();
-            string password = passwordTextBox.Text.Trim();
 
-            if (!DatabaseHandler.IsUserExists(rolename))
+            if (!DatabaseHandler.IsRoleExists(rolename))
             {
-                bool result = DatabaseHandler.AddNewRole(rolename, password);
+                bool result = DatabaseHandler.AddNewRole(rolename);
 
                 if (result)
                 {
                     MessageBox.Show($"Thành công tạo mới vai trò {rolename}");
                     this.Close();
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {

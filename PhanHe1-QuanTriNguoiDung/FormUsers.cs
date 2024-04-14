@@ -24,14 +24,18 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void FormUsers_Load(object sender, EventArgs e)
         {
-            DataTable dataTable = DatabaseHandler.GetAllUsers();
-            userGridView.DataSource = dataTable;
+            Helper.reloadUserTable(userGridView);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FormAddUser formAddUser = new FormAddUser();
-            formAddUser.Show();
+            var result = formAddUser.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Helper.reloadUserTable(userGridView);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -54,8 +58,7 @@ namespace PhanHe1_QuanTriNguoiDung
                     if (DatabaseHandler.DropUser(username))
                     {
                         MessageBox.Show($"Thành công xóa user {username}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DataTable dataTable = DatabaseHandler.GetAllUsers();
-                        userGridView.DataSource = dataTable;
+                        Helper.reloadUserTable(userGridView);
                     }
                 } 
             }
@@ -74,7 +77,12 @@ namespace PhanHe1_QuanTriNguoiDung
                 string username = (string)selectedRow["USERNAME"];
 
                 FormUpdateUser formUpdateUser = new FormUpdateUser(username);
-                formUpdateUser.Show();
+                DialogResult result = formUpdateUser.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    Helper.reloadUserTable(userGridView);
+                }
             }
         }
 
@@ -82,5 +90,6 @@ namespace PhanHe1_QuanTriNguoiDung
         {
 
         }
+
     }
 }

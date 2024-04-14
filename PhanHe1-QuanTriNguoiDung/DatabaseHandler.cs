@@ -107,7 +107,7 @@ namespace PhanHe1_QuanTriNguoiDung
             return true;
         }
 
-        public static bool AddNewRole(string rolename, string password)
+        public static bool AddNewRole(string rolename)
         {
             if (!IsConnected() || string.IsNullOrEmpty(rolename))
             {
@@ -118,14 +118,7 @@ namespace PhanHe1_QuanTriNguoiDung
             ExecuteNonQuery(str);
 
             str = $"create role {rolename} ";
-            if (!string.IsNullOrEmpty(password))
-            {
-                str += $"identified by \"{password}\"";
-            }
             ExecuteNonQuery(str);
-
-            //str = $"grant connect to {rolename}";
-            //ExecuteNonQuery(str);
 
             str = $"alter session set \"_ORACLE_SCRIPT\" = false";
             ExecuteNonQuery(str);
@@ -179,6 +172,12 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             DataTable users = ExecuteQuery($"select * from DBA_USERS where USERNAME = '{username}' ");
             return users.Rows.Count > 0;
+        }
+
+        public static bool IsRoleExists(string roleName)
+        {
+            DataTable roles = ExecuteQuery($"select ROLE from DBA_ROLES where ROLE = '{roleName}'");
+            return roles.Rows.Count > 0;    
         }
 
         public static void Disconnect()
@@ -404,10 +403,9 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static DataTable GetAllRoles()
         {
-            string selectAllRolesQuery = "SELECT * FROM DBA_ROLES";
+            string selectAllRolesQuery = "select ROLE, ROLE_ID, PASSWORD_REQUIRED from DBA_ROLES";
 
-            DataTable dataTable = DatabaseHandler
-                .ExecuteQuery(selectAllRolesQuery);
+            DataTable dataTable = ExecuteQuery(selectAllRolesQuery);
 
             return dataTable;
         }

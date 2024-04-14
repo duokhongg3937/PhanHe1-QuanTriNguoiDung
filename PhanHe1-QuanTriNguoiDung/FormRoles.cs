@@ -24,15 +24,15 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void FormRoles_Load(object sender, EventArgs e)
         {
-            DataTable dataTable = DatabaseHandler.GetAllRoles();
-            roleGridView.DataSource = dataTable;
+            reloadRoleTable();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FormAddRole formAddRole = new FormAddRole();
-            formAddRole.Show();
-        }
+            DialogResult result = formAddRole.ShowDialog();
+
+            if (result == DialogResult.OK) { reloadRoleTable(); }        }
 
         //private void btnDelete_Click(object sender, EventArgs e)
         //{
@@ -81,6 +81,12 @@ namespace PhanHe1_QuanTriNguoiDung
         private void roleGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void reloadRoleTable()
+        {
+            DataTable dataTable = DatabaseHandler.GetAllRoles();
+            roleGridView.DataSource = dataTable;
         }
     }
 }

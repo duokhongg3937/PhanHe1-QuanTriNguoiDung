@@ -22,16 +22,19 @@ namespace PhanHe1_QuanTriNguoiDung
                 if (result)
                 {
                     MessageBox.Show($"Thành công tạo mới người dùng {username}");
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Không thể tạo mới người dùng");
+                    this.DialogResult = DialogResult.No;
                 }
             } 
             else
             {
                 MessageBox.Show("Tên người dùng đã tồn tại");
+                this.DialogResult = DialogResult.No;
             }
         }
     }

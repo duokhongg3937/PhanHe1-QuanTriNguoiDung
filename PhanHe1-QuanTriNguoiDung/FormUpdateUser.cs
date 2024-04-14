@@ -29,6 +29,7 @@ namespace PhanHe1_QuanTriNguoiDung
                 {
                     MessageBox.Show("Cập nhật thành công!!");
                     this.Close();
+                    this.DialogResult = DialogResult.OK;
                 }
             }
         }
