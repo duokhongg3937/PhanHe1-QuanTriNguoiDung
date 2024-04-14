@@ -86,6 +86,12 @@ namespace PhanHe1_QuanTriNguoiDung
             }
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = DatabaseHandler.GetAllUsers();
+            userGridView.DataSource = dataTable;
+        }
+
         private void userGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
