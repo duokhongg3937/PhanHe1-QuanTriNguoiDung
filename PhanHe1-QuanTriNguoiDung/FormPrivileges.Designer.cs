@@ -41,10 +41,6 @@
             this.rolePrivComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.selectCheckBox = new System.Windows.Forms.CheckBox();
-            this.updateCheckBox = new System.Windows.Forms.CheckBox();
-            this.colTablePrivComboBox = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.colColPrivComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -60,7 +56,6 @@
             this.label2.Size = new System.Drawing.Size(506, 59);
             this.label2.TabIndex = 1;
             this.label2.Text = "Grant Permissions For User";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -76,17 +71,20 @@
             // 
             this.userComboBox.AllowDrop = true;
             this.userComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.userComboBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.userComboBox.FormattingEnabled = true;
             this.userComboBox.ItemHeight = 20;
-            this.userComboBox.Location = new System.Drawing.Point(211, 134);
+            this.userComboBox.Location = new System.Drawing.Point(141, 134);
             this.userComboBox.Name = "userComboBox";
-            this.userComboBox.Size = new System.Drawing.Size(132, 26);
+            this.userComboBox.Size = new System.Drawing.Size(202, 26);
             this.userComboBox.TabIndex = 3;
+            this.userComboBox.DropDown += new System.EventHandler(this.userComboBox_DropDownOpened);
             this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_selectionChanged);
+            this.userComboBox.DropDownClosed += new System.EventHandler(this.userComboBox_DropDownClosed);
             // 
             // withGrantOptCheckBox
             // 
-            this.withGrantOptCheckBox.Location = new System.Drawing.Point(440, 71);
+            this.withGrantOptCheckBox.Location = new System.Drawing.Point(403, 71);
             this.withGrantOptCheckBox.Name = "withGrantOptCheckBox";
             this.withGrantOptCheckBox.Size = new System.Drawing.Size(203, 33);
             this.withGrantOptCheckBox.TabIndex = 5;
@@ -132,7 +130,7 @@
             this.tablePrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.tablePrivComboBox.FormattingEnabled = true;
             this.tablePrivComboBox.ItemHeight = 20;
-            this.tablePrivComboBox.Location = new System.Drawing.Point(211, 371);
+            this.tablePrivComboBox.Location = new System.Drawing.Point(733, 208);
             this.tablePrivComboBox.Name = "tablePrivComboBox";
             this.tablePrivComboBox.Size = new System.Drawing.Size(132, 26);
             this.tablePrivComboBox.TabIndex = 11;
@@ -141,13 +139,12 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 360);
+            this.label5.Location = new System.Drawing.Point(558, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 38);
             this.label5.TabIndex = 10;
             this.label5.Text = "Table:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // sysPrivComboBox
             // 
@@ -167,7 +164,7 @@
             this.rolePrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.rolePrivComboBox.FormattingEnabled = true;
             this.rolePrivComboBox.ItemHeight = 20;
-            this.rolePrivComboBox.Location = new System.Drawing.Point(211, 452);
+            this.rolePrivComboBox.Location = new System.Drawing.Point(211, 374);
             this.rolePrivComboBox.Name = "rolePrivComboBox";
             this.rolePrivComboBox.Size = new System.Drawing.Size(132, 26);
             this.rolePrivComboBox.TabIndex = 14;
@@ -176,7 +173,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 441);
+            this.label6.Location = new System.Drawing.Point(17, 374);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(118, 38);
             this.label6.TabIndex = 13;
@@ -186,54 +183,12 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(745, 111);
+            this.label7.Location = new System.Drawing.Point(627, 260);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(200, 33);
             this.label7.TabIndex = 15;
             this.label7.Text = "Permission on Column";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // selectCheckBox
-            // 
-            this.selectCheckBox.Location = new System.Drawing.Point(691, 330);
-            this.selectCheckBox.Name = "selectCheckBox";
-            this.selectCheckBox.Size = new System.Drawing.Size(203, 33);
-            this.selectCheckBox.TabIndex = 16;
-            this.selectCheckBox.Text = "SELECT";
-            this.selectCheckBox.UseVisualStyleBackColor = true;
-            this.selectCheckBox.CheckedChanged += new System.EventHandler(this.selectCheckBox_CheckedChanged);
-            // 
-            // updateCheckBox
-            // 
-            this.updateCheckBox.Location = new System.Drawing.Point(691, 385);
-            this.updateCheckBox.Name = "updateCheckBox";
-            this.updateCheckBox.Size = new System.Drawing.Size(203, 33);
-            this.updateCheckBox.TabIndex = 17;
-            this.updateCheckBox.Text = "UPDATE";
-            this.updateCheckBox.UseVisualStyleBackColor = true;
-            this.updateCheckBox.CheckedChanged += new System.EventHandler(this.updateCheckBox_CheckedChanged);
-            // 
-            // colTablePrivComboBox
-            // 
-            this.colTablePrivComboBox.AllowDrop = true;
-            this.colTablePrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.colTablePrivComboBox.FormattingEnabled = true;
-            this.colTablePrivComboBox.ItemHeight = 20;
-            this.colTablePrivComboBox.Location = new System.Drawing.Point(847, 167);
-            this.colTablePrivComboBox.Name = "colTablePrivComboBox";
-            this.colTablePrivComboBox.Size = new System.Drawing.Size(132, 26);
-            this.colTablePrivComboBox.TabIndex = 19;
-            this.colTablePrivComboBox.SelectedIndexChanged += new System.EventHandler(this.colTablePrivComboBox_selectionChanged);
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(687, 167);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 38);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Table:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // colColPrivComboBox
             // 
@@ -241,7 +196,7 @@
             this.colColPrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.colColPrivComboBox.FormattingEnabled = true;
             this.colColPrivComboBox.ItemHeight = 20;
-            this.colColPrivComboBox.Location = new System.Drawing.Point(847, 245);
+            this.colColPrivComboBox.Location = new System.Drawing.Point(741, 304);
             this.colColPrivComboBox.Name = "colColPrivComboBox";
             this.colColPrivComboBox.Size = new System.Drawing.Size(132, 26);
             this.colColPrivComboBox.TabIndex = 21;
@@ -250,7 +205,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(687, 234);
+            this.label9.Location = new System.Drawing.Point(558, 293);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 38);
             this.label9.TabIndex = 20;
@@ -259,7 +214,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(847, 625);
+            this.button1.Location = new System.Drawing.Point(741, 581);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 42);
             this.button1.TabIndex = 22;
@@ -271,15 +226,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 693);
+            this.ClientSize = new System.Drawing.Size(918, 661);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.colColPrivComboBox);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.colTablePrivComboBox);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.updateCheckBox);
-            this.Controls.Add(this.selectCheckBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rolePrivComboBox);
             this.Controls.Add(this.label6);
@@ -299,6 +250,7 @@
             this.Name = "FormPrivileges";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormPrivileges";
+            this.Load += new System.EventHandler(this.FormPrivileges_Load);
             this.ResumeLayout(false);
 
         }
@@ -317,10 +269,6 @@
         private System.Windows.Forms.ComboBox rolePrivComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox selectCheckBox;
-        private System.Windows.Forms.CheckBox updateCheckBox;
-        private System.Windows.Forms.ComboBox colTablePrivComboBox;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox colColPrivComboBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
