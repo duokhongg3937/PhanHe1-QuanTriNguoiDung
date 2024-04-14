@@ -77,5 +77,10 @@ namespace PhanHe1_QuanTriNguoiDung
                 formUpdateUser.Show();
             }
         }
+
+        private void userGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
