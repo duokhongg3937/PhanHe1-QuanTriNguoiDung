@@ -94,5 +94,32 @@ namespace PhanHe1_QuanTriNguoiDung
             DataTable dataTable = DatabaseHandler.GetAllRoles();
             roleGridView.DataSource = dataTable;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (roleGridView.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 dòng role bất kỳ để xóa");
+                return;
+            }
+            else if (roleGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+            {
+                DataRow selectedRow = selectedDataRowView.Row;
+                string roleName = (string)selectedRow["ROLE"];
+
+                DialogResult res = MessageBox.Show($"Bạn đã chọn role: {roleName} \n\n\n Bạn có chắc chắn muốn xóa role này?",
+                        "Xác nhận xóa role", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    if (DatabaseHandler.DropRole(roleName))
+                    {
+                        MessageBox.Show($"Thành công xóa role {roleName}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DataTable dataTable = DatabaseHandler.GetAllRoles();
+                        roleGridView.DataSource = dataTable;
+                    }
+                }
+            }
+        }
     }
 }

@@ -409,5 +409,26 @@ namespace PhanHe1_QuanTriNguoiDung
 
             return dataTable;
         }
+
+        public static bool DropRole(string roleName)
+        {
+            if (!IsConnected() || string.IsNullOrEmpty(roleName))
+            {
+                return false;
+            }
+
+            if (!IsRoleExists(roleName)) { return false; }
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"drop role {roleName}";
+            ExecuteNonQuery(str);
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
+            return true;
+        }
     }
 }

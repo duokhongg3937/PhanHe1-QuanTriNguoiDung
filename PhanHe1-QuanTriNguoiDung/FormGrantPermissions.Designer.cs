@@ -49,20 +49,22 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Font = new System.Drawing.Font("Tempus Sans ITC", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(506, 59);
+            this.label2.Size = new System.Drawing.Size(675, 73);
             this.label2.TabIndex = 1;
             this.label2.Text = "Grant Permissions For User";
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 122);
+            this.label1.Location = new System.Drawing.Point(23, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 38);
+            this.label1.Size = new System.Drawing.Size(157, 47);
             this.label1.TabIndex = 2;
             this.label1.Text = "User:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,13 +72,14 @@
             // userComboBox
             // 
             this.userComboBox.AllowDrop = true;
-            this.userComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.userComboBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.userComboBox.FormattingEnabled = true;
-            this.userComboBox.ItemHeight = 20;
-            this.userComboBox.Location = new System.Drawing.Point(141, 134);
+            this.userComboBox.BackColor = System.Drawing.Color.White;
+            this.userComboBox.ForeColor = System.Drawing.Color.Black;
+            this.userComboBox.ItemHeight = 16;
+            this.userComboBox.Location = new System.Drawing.Point(188, 165);
+            this.userComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.userComboBox.MaxLength = 10;
             this.userComboBox.Name = "userComboBox";
-            this.userComboBox.Size = new System.Drawing.Size(202, 26);
+            this.userComboBox.Size = new System.Drawing.Size(268, 24);
             this.userComboBox.TabIndex = 3;
             this.userComboBox.DropDown += new System.EventHandler(this.userComboBox_DropDownOpened);
             this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_selectionChanged);
@@ -84,9 +87,10 @@
             // 
             // withGrantOptCheckBox
             // 
-            this.withGrantOptCheckBox.Location = new System.Drawing.Point(403, 71);
+            this.withGrantOptCheckBox.Location = new System.Drawing.Point(537, 87);
+            this.withGrantOptCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.withGrantOptCheckBox.Name = "withGrantOptCheckBox";
-            this.withGrantOptCheckBox.Size = new System.Drawing.Size(203, 33);
+            this.withGrantOptCheckBox.Size = new System.Drawing.Size(271, 41);
             this.withGrantOptCheckBox.TabIndex = 5;
             this.withGrantOptCheckBox.Text = "WITH GRANT OPTION";
             this.withGrantOptCheckBox.UseVisualStyleBackColor = true;
@@ -95,9 +99,10 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 198);
+            this.label3.Location = new System.Drawing.Point(23, 244);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 38);
+            this.label3.Size = new System.Drawing.Size(217, 47);
             this.label3.TabIndex = 6;
             this.label3.Text = "System privileges:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,18 +113,20 @@
             this.objPrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.objPrivComboBox.FormattingEnabled = true;
             this.objPrivComboBox.ItemHeight = 20;
-            this.objPrivComboBox.Location = new System.Drawing.Point(186, 293);
+            this.objPrivComboBox.Location = new System.Drawing.Point(248, 361);
+            this.objPrivComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.objPrivComboBox.Name = "objPrivComboBox";
-            this.objPrivComboBox.Size = new System.Drawing.Size(157, 26);
+            this.objPrivComboBox.Size = new System.Drawing.Size(208, 26);
             this.objPrivComboBox.TabIndex = 9;
             this.objPrivComboBox.SelectedIndexChanged += new System.EventHandler(this.objPrivComboBox_selectionChanged);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 282);
+            this.label4.Location = new System.Drawing.Point(23, 347);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 38);
+            this.label4.Size = new System.Drawing.Size(217, 47);
             this.label4.TabIndex = 8;
             this.label4.Text = "Object privileges:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,18 +137,20 @@
             this.tablePrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.tablePrivComboBox.FormattingEnabled = true;
             this.tablePrivComboBox.ItemHeight = 20;
-            this.tablePrivComboBox.Location = new System.Drawing.Point(664, 209);
+            this.tablePrivComboBox.Location = new System.Drawing.Point(885, 257);
+            this.tablePrivComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tablePrivComboBox.Name = "tablePrivComboBox";
-            this.tablePrivComboBox.Size = new System.Drawing.Size(132, 26);
+            this.tablePrivComboBox.Size = new System.Drawing.Size(175, 26);
             this.tablePrivComboBox.TabIndex = 11;
             this.tablePrivComboBox.SelectedIndexChanged += new System.EventHandler(this.tablePrivComboBox_selectionChanged);
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(511, 198);
+            this.label5.Location = new System.Drawing.Point(681, 244);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 38);
+            this.label5.Size = new System.Drawing.Size(157, 47);
             this.label5.TabIndex = 10;
             this.label5.Text = "Table:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,9 +161,10 @@
             this.sysPrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.sysPrivComboBox.FormattingEnabled = true;
             this.sysPrivComboBox.ItemHeight = 20;
-            this.sysPrivComboBox.Location = new System.Drawing.Point(186, 209);
+            this.sysPrivComboBox.Location = new System.Drawing.Point(248, 257);
+            this.sysPrivComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sysPrivComboBox.Name = "sysPrivComboBox";
-            this.sysPrivComboBox.Size = new System.Drawing.Size(157, 26);
+            this.sysPrivComboBox.Size = new System.Drawing.Size(208, 26);
             this.sysPrivComboBox.TabIndex = 12;
             this.sysPrivComboBox.SelectedIndexChanged += new System.EventHandler(this.sysPrivComboBox_selectionChanged);
             // 
@@ -164,18 +174,20 @@
             this.rolePrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.rolePrivComboBox.FormattingEnabled = true;
             this.rolePrivComboBox.ItemHeight = 20;
-            this.rolePrivComboBox.Location = new System.Drawing.Point(186, 374);
+            this.rolePrivComboBox.Location = new System.Drawing.Point(248, 460);
+            this.rolePrivComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rolePrivComboBox.Name = "rolePrivComboBox";
-            this.rolePrivComboBox.Size = new System.Drawing.Size(157, 26);
+            this.rolePrivComboBox.Size = new System.Drawing.Size(208, 26);
             this.rolePrivComboBox.TabIndex = 14;
             this.rolePrivComboBox.SelectedIndexChanged += new System.EventHandler(this.rolePrivComboBox_selectionChanged);
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 374);
+            this.label6.Location = new System.Drawing.Point(23, 460);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 38);
+            this.label6.Size = new System.Drawing.Size(157, 47);
             this.label6.TabIndex = 13;
             this.label6.Text = "Role:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,9 +195,10 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(568, 247);
+            this.label7.Location = new System.Drawing.Point(757, 304);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(200, 33);
+            this.label7.Size = new System.Drawing.Size(267, 41);
             this.label7.TabIndex = 15;
             this.label7.Text = "Permission on Column";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -196,27 +209,30 @@
             this.colColPrivComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.colColPrivComboBox.FormattingEnabled = true;
             this.colColPrivComboBox.ItemHeight = 20;
-            this.colColPrivComboBox.Location = new System.Drawing.Point(664, 294);
+            this.colColPrivComboBox.Location = new System.Drawing.Point(885, 362);
+            this.colColPrivComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.colColPrivComboBox.Name = "colColPrivComboBox";
-            this.colColPrivComboBox.Size = new System.Drawing.Size(132, 26);
+            this.colColPrivComboBox.Size = new System.Drawing.Size(175, 26);
             this.colColPrivComboBox.TabIndex = 21;
             this.colColPrivComboBox.SelectedIndexChanged += new System.EventHandler(this.colColPrivComboBox_selectionChanged);
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(511, 293);
+            this.label9.Location = new System.Drawing.Point(681, 361);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 38);
+            this.label9.Size = new System.Drawing.Size(157, 47);
             this.label9.TabIndex = 20;
             this.label9.Text = "Column:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(672, 456);
+            this.button1.Location = new System.Drawing.Point(896, 561);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 42);
+            this.button1.Size = new System.Drawing.Size(165, 52);
             this.button1.TabIndex = 22;
             this.button1.Text = "CONFIRM ";
             this.button1.UseVisualStyleBackColor = true;
@@ -224,9 +240,9 @@
             // 
             // FormGrantPermissions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 560);
+            this.ClientSize = new System.Drawing.Size(1155, 689);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.colColPrivComboBox);
@@ -246,7 +262,7 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormGrantPermissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormPrivileges";
