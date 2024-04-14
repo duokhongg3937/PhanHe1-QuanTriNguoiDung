@@ -149,6 +149,9 @@
     <EmbeddedResource Include="FormAddRole.resx">
       <DependentUpon>FormAddRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCheckPrivileges.resx">
+      <DependentUpon>FormCheckPrivileges.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGrantPermissions.resx">
       <DependentUpon>FormGrantPermissions.cs</DependentUpon>
     </EmbeddedResource>

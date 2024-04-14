@@ -165,7 +165,7 @@
             this.btnCheck.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
             this.btnCheck.Size = new System.Drawing.Size(271, 74);
             this.btnCheck.TabIndex = 3;
-            this.btnCheck.Text = "Check Privilege";
+            this.btnCheck.Text = "Check Permission";
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 

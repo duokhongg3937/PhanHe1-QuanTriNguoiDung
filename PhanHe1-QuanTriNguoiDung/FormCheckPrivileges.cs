@@ -16,5 +16,55 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             InitializeComponent();
         }
+
+
+        public BindingList<String> listUsers;
+
+        private void userComboBox_selectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void selectCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void confirmGrantBtn_clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormGrantPermissions_Load(object sender, EventArgs e)
+        {
+            #region get data for combo box
+            // all users for combo box
+
+            listUsers = new BindingList<String>(DatabaseHandler.getListUsers());
+            userComboBox.DataSource = listUsers;
+            listUsers.Add("--Select--");
+            userComboBox.SelectedIndex = listUsers.Count - 1;
+
+            #endregion
+        }
+
+
+
+        private void userComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            // Thay đổi màu nền khi dropdown mở
+            userComboBox.ForeColor = Color.Blue;
+        }
+
+        private void userComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            // Thay đổi màu nền khi dropdown đóng
+            userComboBox.ForeColor = Color.BlueViolet;
+        }
     }
 }
