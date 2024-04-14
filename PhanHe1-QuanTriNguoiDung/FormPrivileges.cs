@@ -29,6 +29,33 @@ namespace PhanHe1_QuanTriNguoiDung
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
             userGridView.DataSource = dataTable;
+
+            #region get data for combo box
+            // all users for combo box
+
+            listUsers = new BindingList<string>(DatabaseHandler.getListUsers());
+            userComboBox.DataSource = listUsers;
+
+
+            // all system privileges
+            listSystemPrivs = new BindingList<string>(DatabaseHandler.getSystemPrivs());
+            sysPrivComboBox.DataSource = listSystemPrivs;
+
+            // all object privileges
+            listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
+            objPrivComboBox.DataSource = listObjectPrivs;
+
+
+            // all tables
+            listTables = new BindingList<string>(DatabaseHandler.getTables());
+            tablePrivComboBox.DataSource = listTables;
+
+
+            // all roles
+            listRoles = new BindingList<string>(DatabaseHandler.getRoles());
+            rolePrivComboBox.DataSource = listRoles;
+
+            #endregion
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -136,39 +163,6 @@ namespace PhanHe1_QuanTriNguoiDung
         private void withGrantOptCheckBox_checkedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void FormPrivileges_Load(object sender, EventArgs e)
-        {
-            #region get data for combo box
-            // all users for combo box
-
-            listUsers = new BindingList<string>(DatabaseHandler.getListUsers());
-            userComboBox.DataSource = listUsers;
-
-
-            // all system privileges
-            listSystemPrivs = new BindingList<string>(DatabaseHandler.getSystemPrivs());
-            sysPrivComboBox.DataSource = listSystemPrivs;
-
-            // all object privileges
-            listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
-            objPrivComboBox.DataSource = listObjectPrivs;
-
-
-            // all tables
-            listTables = new BindingList<string>(DatabaseHandler.getTables());
-            tablePrivComboBox.DataSource = listTables;
-
-
-            // all roles
-            listRoles = new BindingList<string>(DatabaseHandler.getRoles());
-            rolePrivComboBox.DataSource = listRoles ;
-
-
-
-
-            #endregion
         }
 
         private void userComboBox_DropDownOpened(object sender, EventArgs e)

@@ -404,11 +404,9 @@
         private System.Windows.Forms.Button btnCol;
         private System.Windows.Forms.Button btnTableName;
         private System.Windows.Forms.DataGridView userGridView;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRole;
         private System.Windows.Forms.Button buttonUser;
         private System.Windows.Forms.Label text1;
-        private System.Windows.Forms.Label label2;
 
     }
 }
