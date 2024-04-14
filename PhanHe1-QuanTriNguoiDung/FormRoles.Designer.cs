@@ -31,8 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.roleGridView = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
-            //this.btnDelete = new System.Windows.Forms.Button();
-            //this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.roleGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,16 +41,13 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 38);
+            this.label1.Size = new System.Drawing.Size(247, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Danh sách Vai trò";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // roleGridView
             // 
-            //this.roleGridView.AllowRoleToAddRows = false;
-            //this.roleGridView.AllowRoleToDeleteRows = false;
-            //this.roleGridView.AllowRoleToOrderColumns = true;
             this.roleGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.roleGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.roleGridView.ColumnHeadersHeight = 29;
@@ -77,27 +73,16 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnDelete
+            // btnRefresh
             // 
-            //this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            //this.btnDelete.Location = new System.Drawing.Point(167, 88);
-            //this.btnDelete.Name = "btnDelete";
-            //this.btnDelete.Size = new System.Drawing.Size(126, 41);
-            //this.btnDelete.TabIndex = 2;
-            //this.btnDelete.Text = "Xóa";
-            //this.btnDelete.UseVisualStyleBackColor = true;
-            //this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            //// 
-            //// btnUpdate
-            //// 
-            //this.btnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.btnUpdate.Location = new System.Drawing.Point(315, 88);
-            //this.btnUpdate.Name = "btnUpdate";
-            //this.btnUpdate.Size = new System.Drawing.Size(126, 41);
-            //this.btnUpdate.TabIndex = 2;
-            //this.btnUpdate.Text = "Cập nhật";
-            //this.btnUpdate.UseVisualStyleBackColor = true;
-            //this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.Location = new System.Drawing.Point(169, 88);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(126, 41);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // FormRoles
             // 
@@ -106,16 +91,15 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1175, 745);
             this.ControlBox = false;
-            //this.Controls.Add(this.btnUpdate);
-            //this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.roleGridView);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormUsers";
+            this.Name = "FormRoles";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FormUsers";
+            this.Text = "FormRoles";
             this.Load += new System.EventHandler(this.FormRoles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.roleGridView)).EndInit();
             this.ResumeLayout(false);
@@ -128,6 +112,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView roleGridView;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnRefresh;
         //private System.Windows.Forms.Button btnDelete;
         //private System.Windows.Forms.Button btnUpdate;
     }

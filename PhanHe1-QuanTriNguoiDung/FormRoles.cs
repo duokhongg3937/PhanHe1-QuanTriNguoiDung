@@ -34,6 +34,12 @@ namespace PhanHe1_QuanTriNguoiDung
             formAddRole.Show();
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = DatabaseHandler.GetAllRoles();
+            roleGridView.DataSource = dataTable;
+        }
+
         //private void btnDelete_Click(object sender, EventArgs e)
         //{
         //    if (roleGridView.SelectedRows.Count <= 0)
