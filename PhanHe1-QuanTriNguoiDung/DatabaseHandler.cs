@@ -100,6 +100,9 @@ namespace PhanHe1_QuanTriNguoiDung
             str = $"grant connect to {username}";
             ExecuteNonQuery(str);
 
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
             return true;
         }
 
@@ -116,6 +119,30 @@ namespace PhanHe1_QuanTriNguoiDung
             ExecuteNonQuery(str);
 
             str = $"drop user {username} cascade";
+            ExecuteNonQuery(str);
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
+            return true;
+        }
+
+        public static bool UpdateUser(string username, string password)
+        {
+            if (!IsConnected() || string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+
+            if (!IsUserExists(username)) { return false; }
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"alter user {username} identified by {password}";
+            ExecuteNonQuery(str);
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
             ExecuteNonQuery(str);
 
             return true;
@@ -336,5 +363,16 @@ namespace PhanHe1_QuanTriNguoiDung
         }
 
         #endregion
+
+        public static DataTable GetAllUsers()
+        {
+            string selectAllUsersQuery = "select USERNAME, USER_ID, EXPIRY_DATE, CREATED, PROFILE  " +
+                "from DBA_USERS where ACCOUNT_STATUS = 'OPEN'";
+            DataTable dataTable = DatabaseHandler
+                .ExecuteQuery(selectAllUsersQuery);
+
+            return dataTable;
+        }
+
     }
 }

@@ -24,10 +24,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void FormUsers_Load(object sender, EventArgs e)
         {
-            string selectAllUsersQuery = "select USERNAME, USER_ID, PASSWORD, EXPIRY_DATE, CREATED, PROFILE  " +
-                "from DBA_USERS where ACCOUNT_STATUS = 'OPEN'";
-            DataTable dataTable = DatabaseHandler
-                .ExecuteQuery(selectAllUsersQuery);
+            DataTable dataTable = DatabaseHandler.GetAllUsers();
             userGridView.DataSource = dataTable;
         }
 
@@ -43,30 +40,42 @@ namespace PhanHe1_QuanTriNguoiDung
             {
                 MessageBox.Show("Vui lòng chọn 1 dòng user bất kỳ để xóa");
                 return;
-            } else
+            } 
+            else if (userGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
             {
-                int selectedIndex = userGridView.SelectedRows[0].Index;
+                DataRow selectedRow = selectedDataRowView.Row;
+                string username = (string)selectedRow["USERNAME"];
 
-                if (userGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
-                {
-                    DataRow selectedRow = selectedDataRowView.Row;
-                    string username = (string)selectedRow["USERNAME"];
-
-                    DialogResult res = MessageBox.Show($"Bạn đã chọn user: {username} \n\n\n Bạn có chắc chắn muốn xóa user này?",
+                DialogResult res = MessageBox.Show($"Bạn đã chọn user: {username} \n\n\n Bạn có chắc chắn muốn xóa user này?",
                         "Xác nhận xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (res == DialogResult.Yes)
+                if (res == DialogResult.Yes)
+                {
+                    if (DatabaseHandler.DropUser(username))
                     {
-                        DatabaseHandler.DropUser(username);
                         MessageBox.Show($"Thành công xóa user {username}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    } 
-                }
+                        DataTable dataTable = DatabaseHandler.GetAllUsers();
+                        userGridView.DataSource = dataTable;
+                    }
+                } 
             }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (userGridView.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 dòng user bất kỳ để chỉnh sửa");
+                return;
+            }
+            else if (userGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+            {
+                DataRow selectedRow = selectedDataRowView.Row;
+                string username = (string)selectedRow["USERNAME"];
 
+                FormUpdateUser formUpdateUser = new FormUpdateUser(username);
+                formUpdateUser.Show();
+            }
         }
     }
 }
