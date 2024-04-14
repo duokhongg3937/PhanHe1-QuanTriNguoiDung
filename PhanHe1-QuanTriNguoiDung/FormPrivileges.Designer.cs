@@ -30,13 +30,14 @@
         {
             this.btnCol = new System.Windows.Forms.Button();
             this.btnTableName = new System.Windows.Forms.Button();
-            this.userGridView = new System.Windows.Forms.DataGridView();
+            this.privsGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRole = new System.Windows.Forms.Button();
             this.buttonUser = new System.Windows.Forms.Button();
             this.text1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
+            this.revokeBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.privsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCol
@@ -63,24 +64,25 @@
             this.btnTableName.UseVisualStyleBackColor = true;
             this.btnTableName.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // userGridView
+            // privsGridView
             // 
-            this.userGridView.AllowUserToAddRows = false;
-            this.userGridView.AllowUserToDeleteRows = false;
-            this.userGridView.AllowUserToOrderColumns = true;
-            this.userGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.userGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.userGridView.ColumnHeadersHeight = 29;
-            this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.userGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.userGridView.Location = new System.Drawing.Point(0, 115);
-            this.userGridView.Margin = new System.Windows.Forms.Padding(2);
-            this.userGridView.Name = "userGridView";
-            this.userGridView.ReadOnly = true;
-            this.userGridView.RowHeadersWidth = 51;
-            this.userGridView.RowTemplate.Height = 24;
-            this.userGridView.Size = new System.Drawing.Size(900, 578);
-            this.userGridView.TabIndex = 4;
+            this.privsGridView.AllowUserToAddRows = false;
+            this.privsGridView.AllowUserToDeleteRows = false;
+            this.privsGridView.AllowUserToOrderColumns = true;
+            this.privsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.privsGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.privsGridView.ColumnHeadersHeight = 29;
+            this.privsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.privsGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.privsGridView.Location = new System.Drawing.Point(0, 115);
+            this.privsGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.privsGridView.Name = "privsGridView";
+            this.privsGridView.ReadOnly = true;
+            this.privsGridView.RowHeadersWidth = 51;
+            this.privsGridView.RowTemplate.Height = 24;
+            this.privsGridView.Size = new System.Drawing.Size(900, 578);
+            this.privsGridView.TabIndex = 4;
+            this.privsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.privCell_clicked);
             // 
             // label1
             // 
@@ -136,19 +138,31 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Mặc định chọn TableName";
             // 
+            // revokeBtn
+            // 
+            this.revokeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.revokeBtn.Location = new System.Drawing.Point(438, 58);
+            this.revokeBtn.Name = "revokeBtn";
+            this.revokeBtn.Size = new System.Drawing.Size(96, 28);
+            this.revokeBtn.TabIndex = 12;
+            this.revokeBtn.Text = "Thu hồi";
+            this.revokeBtn.UseVisualStyleBackColor = true;
+            this.revokeBtn.Click += new System.EventHandler(this.revokePermBtn_clicked);
+            // 
             // FormPrivileges
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 693);
             this.ControlBox = false;
+            this.Controls.Add(this.revokeBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text1);
             this.Controls.Add(this.buttonRole);
             this.Controls.Add(this.buttonUser);
             this.Controls.Add(this.btnCol);
             this.Controls.Add(this.btnTableName);
-            this.Controls.Add(this.userGridView);
+            this.Controls.Add(this.privsGridView);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -156,7 +170,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormPrivileges";
             this.Load += new System.EventHandler(this.FormPrivileges_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.privsGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,11 +179,12 @@
         #endregion
         private System.Windows.Forms.Button btnCol;
         private System.Windows.Forms.Button btnTableName;
-        private System.Windows.Forms.DataGridView userGridView;
+        private System.Windows.Forms.DataGridView privsGridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRole;
         private System.Windows.Forms.Button buttonUser;
         private System.Windows.Forms.Label text1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button revokeBtn;
     }
 }

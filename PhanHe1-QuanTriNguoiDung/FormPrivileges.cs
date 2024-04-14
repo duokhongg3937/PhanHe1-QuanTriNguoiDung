@@ -28,7 +28,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
-            userGridView.DataSource = dataTable;
+            privsGridView.DataSource = dataTable;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
-            userGridView.DataSource = dataTable;
+            privsGridView.DataSource = dataTable;
         }
 
         private void btnCol_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
-            userGridView.DataSource = dataTable;
+            privsGridView.DataSource = dataTable;
         }
 
         private void buttonUser_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
-            userGridView.DataSource = dataTable;
+            privsGridView.DataSource = dataTable;
         }
 
         private void buttonRole_Click(object sender, EventArgs e)
@@ -71,7 +71,38 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = DatabaseHandler
                 .ExecuteQuery(selectAllPrivilegesQuery);
-            userGridView.DataSource = dataTable;
+            privsGridView.DataSource = dataTable;
+        }
+
+        private void revokePermBtn_clicked(object sender, EventArgs e)
+        {
+            //if (privsGridView.SelectedRows.Count <= 0)
+            //{
+            //    MessageBox.Show("Vui lòng chọn 1 dòng quyền bất kỳ để xóa");
+            //    return;
+            //}
+            //else if (privsGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+            //{
+            //    DataRow selectedRow = selectedDataRowView.Row;
+            //    string username = (string)selectedRow["USERNAME"];
+
+            //    DialogResult res = MessageBox.Show($"Bạn đã chọn user: {username} \n\n\n Bạn có chắc chắn muốn xóa user này?",
+            //            "Xác nhận xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            //    if (res == DialogResult.Yes)
+            //    {
+            //        if (DatabaseHandler.DropUser(username))
+            //        {
+            //            MessageBox.Show($"Thành công xóa user {username}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            Helper.reloadUserTable(privsGridView);
+            //        }
+            //    }
+            //}
+        }
+
+        private void privCell_clicked(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

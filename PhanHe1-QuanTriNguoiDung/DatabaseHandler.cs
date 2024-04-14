@@ -12,7 +12,7 @@ namespace PhanHe1_QuanTriNguoiDung
     {
         private static string _connectionString = "";
         private static OracleConnection _connection;
-        private static string currentUsername = "";
+        public static string currentUsername = "";
 
         public static DataTable ExecuteQuery(string query)
         {
@@ -200,7 +200,7 @@ namespace PhanHe1_QuanTriNguoiDung
         #region all queries for grant permissions | form privileges
         public static List<string> getListUsers()
         {
-            string query = "select USERNAME  " +
+            string query = "select distinct USERNAME  " +
                                         "from DBA_USERS where ACCOUNT_STATUS = 'OPEN'";
 
             List<string> users = new List<string>();
@@ -208,7 +208,7 @@ namespace PhanHe1_QuanTriNguoiDung
             try
             {
                 // Kiểm tra kết nối
-                //if (IsConnected())
+                if (IsConnected())
                 {
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
@@ -238,7 +238,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static List<string> getSystemPrivs()
         {
-            string query = "select privilege from dba_sys_privs where grantee = 'DBA'";
+            string query = "select distinct privilege from dba_sys_privs where grantee = 'DBA'";
             Debug.WriteLine(query);
 
             List<string> privs = new List<string>();
@@ -277,7 +277,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static List<string> getObjectPrivs()
         {
-            string query = "select privilege from dba_tab_privs where grantee = 'DBA'";
+            string query = "select distinct privilege from dba_tab_privs where grantee = 'DBA'";
 
             List<string> privs = new List<string>();
 
@@ -316,7 +316,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static List<string> getTables()
         {
-            string query = "select TABLE_NAME from DBA_TABLES";
+            string query = "select distinct table_name from dba_tab_privs where owner = :username or (grantee = 'DBA' and grantable = 'YES')";
 
             List<string> tables = new List<string>();
 
@@ -328,12 +328,15 @@ namespace PhanHe1_QuanTriNguoiDung
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
+                        // Thêm tham số `@username` với giá trị của người dùng hiện tại.
+                        cmd.Parameters.Add(new OracleParameter(":username", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
+
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             // Đọc dữ liệu và thêm vào danh sách
                             while (reader.Read())
                             {
-                                string table = reader.GetString(0);
+                                string table = reader["table_name"].ToString();
                                 tables.Add(table);
                             }
                         }
@@ -353,7 +356,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static List<string> getRoles()
         {
-            string query = "select ROLE from DBA_ROLES";
+            string query = "select distinct ROLE from DBA_ROLES";
 
             List<string> roles = new List<string>();
 
