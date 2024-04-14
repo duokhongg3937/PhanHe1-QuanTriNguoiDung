@@ -70,6 +70,7 @@
             this.btnCheck.TabIndex = 2;
             this.btnCheck.Text = "Check";
             this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.confirmGrantBtn_clicked);
             // 
             // userComboBox
             // 

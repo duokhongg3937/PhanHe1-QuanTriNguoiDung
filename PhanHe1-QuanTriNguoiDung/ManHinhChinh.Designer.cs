@@ -202,7 +202,6 @@
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

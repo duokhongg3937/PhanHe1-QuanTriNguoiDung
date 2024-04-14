@@ -37,7 +37,9 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void confirmGrantBtn_clicked(object sender, EventArgs e)
         {
-
+            string username = (string)userComboBox.SelectedValue;
+            DataTable dataTable = DatabaseHandler.GetPrivilegesUser(username);
+            checkGridView.DataSource = dataTable;
         }
 
         private void FormGrantPermissions_Load(object sender, EventArgs e)
