@@ -200,8 +200,11 @@ namespace PhanHe1_QuanTriNguoiDung
         #region all queries for grant permissions | form privileges
         public static List<string> getListUsers()
         {
-            string query = "select distinct USERNAME  " +
-                                        "from DBA_USERS where ACCOUNT_STATUS = 'OPEN'";
+            string query = @"select * from 
+                            (select USERNAME from DBA_USERS where username <> :currentUser and DEFAULT_TABLESPACE = 'USERS' and ACCOUNT_STATUS = 'OPEN')
+                            except
+                            (SELECT DISTINCT grantee AS USERNAME FROM DBA_SYS_PRIVS WHERE admin_option = 'YES')
+                            ";
 
             List<string> users = new List<string>();
 
@@ -213,6 +216,9 @@ namespace PhanHe1_QuanTriNguoiDung
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
+                        // Thêm tham số `@username` với giá trị của người dùng hiện tại.
+                        cmd.Parameters.Add(new OracleParameter(":currentUser", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
+
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             // Đọc dữ liệu và thêm vào danh sách
@@ -251,7 +257,7 @@ namespace PhanHe1_QuanTriNguoiDung
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
-                        //cmd.Parameters.Add(new OracleParameter("@grantee", OracleDbType.Varchar2)).Value = "DBA";
+                        //cmd.Parameters.Add(new OracleParameter("@username", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             // Đọc dữ liệu và thêm vào danh sách
@@ -316,7 +322,8 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public static List<string> getTables()
         {
-            string query = "select distinct table_name from dba_tab_privs where owner = :username or (grantee = 'DBA' and grantable = 'YES')";
+            //string query = "select distinct table_name from dba_tab_privs where owner = :username or (grantee = 'DBA' and grantable = 'YES')";
+            string query = "SELECT distinct table_name FROM DBA_TABLES ";
 
             List<string> tables = new List<string>();
 
@@ -329,7 +336,7 @@ namespace PhanHe1_QuanTriNguoiDung
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
                         // Thêm tham số `@username` với giá trị của người dùng hiện tại.
-                        cmd.Parameters.Add(new OracleParameter(":username", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
+                        //cmd.Parameters.Add(new OracleParameter(":username", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
 
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
@@ -352,6 +359,45 @@ namespace PhanHe1_QuanTriNguoiDung
 
             // Trả về danh sách người dùng
             return tables;
+        }
+
+        public static List<string> getColsOfTable(string tableName)
+        {
+            List<string> cols = new List<string>();
+            string query = "SELECT * FROM :tableName ";
+
+
+            try
+            {
+                // Kiểm tra kết nối
+                //if (IsConnected())
+                {
+                    // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
+                    using (OracleCommand cmd = new OracleCommand(query, _connection))
+                    {
+                        // Thêm tham số `@username` với giá trị của người dùng hiện tại.
+                        cmd.Parameters.Add(new OracleParameter(":tableName", OracleDbType.Varchar2)).Value = tableName;
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Đọc dữ liệu và thêm vào danh sách
+                            while (reader.Read())
+                            {
+                                string table = reader[0].ToString();
+                                cols.Add(table);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi nhận lỗi hoặc xử lý theo cách khác
+                Console.WriteLine("Truy vấn lỗi: " + ex.Message);
+                // Bạn có thể xử lý thêm lỗi hoặc ghi nhật ký lỗi nếu cần thiết
+            }
+
+            return cols;
         }
 
         public static List<string> getRoles()
@@ -389,6 +435,39 @@ namespace PhanHe1_QuanTriNguoiDung
 
             // Trả về danh sách người dùng
             return roles;
+        }
+
+        public static bool RevokePrivilege(string user, string priv, string table)
+        {
+            if (!IsConnected())
+            {
+                return false;
+            }
+
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            str = $"REVOKE {priv} ON {table} FROM {user}";
+
+
+
+            try
+            {
+                    OracleCommand cmd = new OracleCommand(str, _connection);
+                     cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Truy vấn lỗi: " + ex.Message);
+                return false;
+            }
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
+            return true;
         }
 
         #endregion
