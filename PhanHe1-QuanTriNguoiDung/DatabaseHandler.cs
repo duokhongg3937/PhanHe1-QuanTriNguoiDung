@@ -413,6 +413,15 @@ namespace PhanHe1_QuanTriNguoiDung
             return dataTable;
         }
 
+        public static DataTable GetPrivilegesUser(string username)
+        {
+            string selectQuery = $"select * from dba_sys_privs where grantee = '{username}'";
+
+            DataTable dataTable = ExecuteQuery(selectQuery);
+
+            return dataTable;
+        }
+
         public static bool DropRole(string roleName)
         {
             if (!IsConnected() || string.IsNullOrEmpty(roleName))
