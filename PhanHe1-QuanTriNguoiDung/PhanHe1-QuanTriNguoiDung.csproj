@@ -89,6 +89,12 @@
     <Compile Include="FormAddRole.Designer.cs">
       <DependentUpon>FormAddRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCheckPrivileges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCheckPrivileges.Designer.cs">
+      <DependentUpon>FormCheckPrivileges.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormGrantPermissions.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,6 +8,7 @@ namespace PhanHe1_QuanTriNguoiDung
         FormUsers formUsers;
         FormRoles formRoles;
         FormPrivileges formPrivileges;
+        FormCheckPrivileges formCheckPrivileges;
         FormGrantPermissions formGrantPermissions;
 
         public ManHinhChinh()
@@ -62,6 +63,23 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             formRoles = null;
         }
+
+        private void FormCheck_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formCheckPrivileges = null;
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            if (formCheckPrivileges == null || formCheckPrivileges.IsDisposed)
+            {
+                formCheckPrivileges = new FormCheckPrivileges();
+                formCheckPrivileges.FormClosed += FormCheck_FormClosed;
+            }
+
+            showForm(formCheckPrivileges);
+        }
+
 
         private void btnPrivilege_Click(object sender, EventArgs e)
         {

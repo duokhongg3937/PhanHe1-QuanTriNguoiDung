@@ -36,11 +36,14 @@
             this.btnRoles = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnPrivilege = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -49,22 +52,23 @@
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
+            this.flowLayoutPanel1.Controls.Add(this.panel6);
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(180, 612);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 753);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Controls.Add(this.btnUsers);
-            this.panel3.Location = new System.Drawing.Point(2, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Location = new System.Drawing.Point(3, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 46);
+            this.panel3.Size = new System.Drawing.Size(267, 57);
             this.panel3.TabIndex = 3;
             // 
             // btnUsers
@@ -74,11 +78,11 @@
             this.btnUsers.ForeColor = System.Drawing.Color.White;
             this.btnUsers.Image = ((System.Drawing.Image)(resources.GetObject("btnUsers.Image")));
             this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsers.Location = new System.Drawing.Point(-20, -8);
-            this.btnUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUsers.Location = new System.Drawing.Point(-27, -10);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btnUsers.Size = new System.Drawing.Size(203, 60);
+            this.btnUsers.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnUsers.Size = new System.Drawing.Size(271, 74);
             this.btnUsers.TabIndex = 2;
             this.btnUsers.Text = "Users";
             this.btnUsers.UseVisualStyleBackColor = false;
@@ -88,10 +92,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.btnRoles);
-            this.panel1.Location = new System.Drawing.Point(2, 52);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(3, 63);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 46);
+            this.panel1.Size = new System.Drawing.Size(267, 57);
             this.panel1.TabIndex = 3;
             // 
             // btnRoles
@@ -101,11 +105,11 @@
             this.btnRoles.ForeColor = System.Drawing.Color.White;
             this.btnRoles.Image = ((System.Drawing.Image)(resources.GetObject("btnRoles.Image")));
             this.btnRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRoles.Location = new System.Drawing.Point(-20, -8);
-            this.btnRoles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRoles.Location = new System.Drawing.Point(-27, -10);
+            this.btnRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRoles.Name = "btnRoles";
-            this.btnRoles.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btnRoles.Size = new System.Drawing.Size(203, 60);
+            this.btnRoles.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnRoles.Size = new System.Drawing.Size(271, 74);
             this.btnRoles.TabIndex = 2;
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = false;
@@ -115,10 +119,10 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Black;
             this.panel4.Controls.Add(this.btnPrivilege);
-            this.panel4.Location = new System.Drawing.Point(2, 102);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Location = new System.Drawing.Point(3, 124);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 46);
+            this.panel4.Size = new System.Drawing.Size(267, 57);
             this.panel4.TabIndex = 3;
             // 
             // btnPrivilege
@@ -128,19 +132,46 @@
             this.btnPrivilege.ForeColor = System.Drawing.Color.White;
             this.btnPrivilege.Image = ((System.Drawing.Image)(resources.GetObject("btnPrivilege.Image")));
             this.btnPrivilege.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrivilege.Location = new System.Drawing.Point(-20, -8);
-            this.btnPrivilege.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrivilege.Location = new System.Drawing.Point(-27, -10);
+            this.btnPrivilege.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrivilege.Name = "btnPrivilege";
-            this.btnPrivilege.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btnPrivilege.Size = new System.Drawing.Size(203, 60);
+            this.btnPrivilege.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnPrivilege.Size = new System.Drawing.Size(271, 74);
             this.btnPrivilege.TabIndex = 2;
             this.btnPrivilege.Text = "Privilege";
             this.btnPrivilege.UseVisualStyleBackColor = false;
             this.btnPrivilege.Click += new System.EventHandler(this.btnPrivilege_Click);
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Black;
+            this.panel6.Controls.Add(this.btnCheck);
+            this.panel6.Location = new System.Drawing.Point(3, 185);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(267, 57);
+            this.panel6.TabIndex = 3;
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.BackColor = System.Drawing.Color.Black;
+            this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheck.ForeColor = System.Drawing.Color.White;
+            this.btnCheck.Image = ((System.Drawing.Image)(resources.GetObject("btnCheck.Image")));
+            this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCheck.Location = new System.Drawing.Point(-27, -8);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnCheck.Size = new System.Drawing.Size(271, 74);
+            this.btnCheck.TabIndex = 3;
+            this.btnCheck.Text = "Check Privilege";
+            this.btnCheck.UseVisualStyleBackColor = false;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 153);
+            this.button1.Location = new System.Drawing.Point(3, 247);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(177, 50);
             this.button1.TabIndex = 4;
@@ -150,13 +181,13 @@
             // 
             // ManHinhChinh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 612);
+            this.ClientSize = new System.Drawing.Size(1421, 753);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ManHinhChinh";
@@ -169,6 +200,7 @@
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -179,9 +211,12 @@
         private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRoles;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnPrivilege;
         private System.Windows.Forms.Button button1;
+
     }
 }
 
