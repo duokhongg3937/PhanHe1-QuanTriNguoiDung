@@ -198,12 +198,14 @@ namespace PhanHe1_QuanTriNguoiDung
         }
 
         #region all queries for grant permissions | form privileges
-        public static List<string> getListUsers()
+        public static List<string> getListUsers_Roles()
         {
             string query = @"select * from 
                             (select USERNAME from DBA_USERS where username <> :currentUser and DEFAULT_TABLESPACE = 'USERS' and ACCOUNT_STATUS = 'OPEN')
                             except
                             (SELECT DISTINCT grantee AS USERNAME FROM DBA_SYS_PRIVS WHERE admin_option = 'YES')
+                            union
+                            (select ROLE as USERNAME from DBA_ROLES)
                             ";
 
             List<string> users = new List<string>();

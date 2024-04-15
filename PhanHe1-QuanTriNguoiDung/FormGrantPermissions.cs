@@ -31,7 +31,6 @@ namespace PhanHe1_QuanTriNguoiDung
         #region all selection changed events
         private void userComboBox_selectionChanged(object sender, EventArgs e)
         {
-
         }
 
         private void sysPrivComboBox_selectionChanged(object sender, EventArgs e)
@@ -223,7 +222,7 @@ namespace PhanHe1_QuanTriNguoiDung
             #region get data for combo box
             // all users for combo box
 
-            listUsers = new BindingList<String>(DatabaseHandler.getListUsers());
+            listUsers = new BindingList<String>(DatabaseHandler.getListUsers_Roles());
             userComboBox.DataSource = listUsers;
             listUsers.Insert(0, "--Select--");
             userComboBox.SelectedIndex = 0;
@@ -274,6 +273,21 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             // Thay đổi màu nền khi dropdown đóng
             userComboBox.ForeColor = Color.BlueViolet;
+        }
+
+        private void clearBtn_clicked(object sender, EventArgs e)
+        {
+            userComboBox.SelectedIndex = 0;
+            rolePrivComboBox.SelectedIndex = 0;
+            sysPrivComboBox.SelectedIndex = 0;
+
+            objPrivComboBox.SelectedIndex = 0;
+            tablePrivComboBox.SelectedIndex = 0;
+            if (colColPrivComboBox.SelectedItem != null)
+            {
+                colColPrivComboBox.SelectedIndex = 0;
+            }
+            withGrantOptCheckBox.Checked = false;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace PhanHe1_QuanTriNguoiDung
             #region get data for combo box
             // all users for combo box
 
-            listUsers = new BindingList<String>(DatabaseHandler.getListUsers());
+            listUsers = new BindingList<String>(DatabaseHandler.getListUsers_Roles());
             userComboBox.DataSource = listUsers;
             listUsers.Add("--Select--");
             userComboBox.SelectedIndex = listUsers.Count - 1;
