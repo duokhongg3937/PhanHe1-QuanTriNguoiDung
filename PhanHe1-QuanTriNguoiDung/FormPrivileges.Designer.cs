@@ -37,6 +37,9 @@
             this.text1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.revokeBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.usernameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.privsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +101,7 @@
             // buttonRole
             // 
             this.buttonRole.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.buttonRole.Location = new System.Drawing.Point(745, 49);
+            this.buttonRole.Location = new System.Drawing.Point(773, 49);
             this.buttonRole.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRole.Name = "buttonRole";
             this.buttonRole.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -111,7 +114,7 @@
             // buttonUser
             // 
             this.buttonUser.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.buttonUser.Location = new System.Drawing.Point(634, 49);
+            this.buttonUser.Location = new System.Drawing.Point(662, 49);
             this.buttonUser.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUser.Name = "buttonUser";
             this.buttonUser.Size = new System.Drawing.Size(94, 33);
@@ -123,7 +126,7 @@
             // text1
             // 
             this.text1.AutoSize = true;
-            this.text1.Location = new System.Drawing.Point(682, 30);
+            this.text1.Location = new System.Drawing.Point(714, 93);
             this.text1.Name = "text1";
             this.text1.Size = new System.Drawing.Size(104, 13);
             this.text1.TabIndex = 10;
@@ -132,7 +135,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(233, 68);
+            this.label2.Location = new System.Drawing.Point(44, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 13);
             this.label2.TabIndex = 11;
@@ -141,7 +144,7 @@
             // revokeBtn
             // 
             this.revokeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revokeBtn.Location = new System.Drawing.Point(438, 58);
+            this.revokeBtn.Location = new System.Drawing.Point(488, 51);
             this.revokeBtn.Name = "revokeBtn";
             this.revokeBtn.Size = new System.Drawing.Size(96, 28);
             this.revokeBtn.TabIndex = 12;
@@ -149,12 +152,48 @@
             this.revokeBtn.UseVisualStyleBackColor = true;
             this.revokeBtn.Click += new System.EventHandler(this.revokePermBtn_clicked);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label3.Location = new System.Drawing.Point(278, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 24);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "User/Role: ";
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCheck.Location = new System.Drawing.Point(662, 10);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(94, 33);
+            this.btnCheck.TabIndex = 15;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.usernameTextBox.Location = new System.Drawing.Point(386, 14);
+            this.usernameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(198, 27);
+            this.usernameTextBox.TabIndex = 16;
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.usernameTextBox_TextChanged);
+            // 
             // FormPrivileges
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 693);
             this.ControlBox = false;
+            this.Controls.Add(this.usernameTextBox);
+            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.revokeBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text1);
@@ -186,5 +225,8 @@
         private System.Windows.Forms.Label text1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button revokeBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.TextBox usernameTextBox;
     }
 }
