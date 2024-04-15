@@ -202,8 +202,6 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             string query = @"select * from 
                             (select USERNAME from DBA_USERS where username <> :currentUser and DEFAULT_TABLESPACE = 'USERS' and ACCOUNT_STATUS = 'OPEN')
-                            except
-                            (SELECT DISTINCT grantee AS USERNAME FROM DBA_SYS_PRIVS WHERE admin_option = 'YES')
                             union
                             (select ROLE as USERNAME from DBA_ROLES)
                             ";

@@ -205,7 +205,7 @@ namespace PhanHe1_QuanTriNguoiDung
                 string query = $"GRANT {sysPriv} TO {user} ";
                 if (withGrantOpt)
                 {
-                    query += "WITH GRANT OPTION";
+                    query += "WITH ADMIN OPTION";
                 }
                 res = DatabaseHandler.GrantPerm(query);
                 
