@@ -48,20 +48,25 @@ namespace PhanHe1_QuanTriNguoiDung
 
             DataTable dataTable = null;
 
-            if (type == "ROLE")
+            if (type ==  "--Select--" || username == "--Select--")
             {
-                dataTable = DatabaseHandler.GetRolePrivileges(username);
-            }
-            else if (type == "SYSTEM")
-            {
-                dataTable = DatabaseHandler.GetSysPrivileges(username);
+                dataTable = null;
             }
             else
             {
-                dataTable = DatabaseHandler.GetTablePrivileges(username);
+                if (type == "ROLE")
+                {
+                    dataTable = DatabaseHandler.GetRolePrivileges(username);
+                }
+                else if (type == "SYSTEM")
+                {
+                    dataTable = DatabaseHandler.GetSysPrivileges(username);
+                }
+                else
+                {
+                    dataTable = DatabaseHandler.GetTablePrivileges(username);
+                }
             }
-
-
             checkGridView.DataSource = dataTable;
         }
 
