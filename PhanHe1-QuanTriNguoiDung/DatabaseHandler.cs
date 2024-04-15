@@ -339,6 +339,10 @@ SELECT OWNER || '.' || TABLE_NAME as table_name from DBA_TABLES where owner IN (
     (select USERNAME from DBA_USERS where DEFAULT_TABLESPACE = 'USERS' and ACCOUNT_STATUS = 'OPEN')
                            
 )
+
+UNION 
+
+select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE OWNER <> 'SYS'
 )
                         
                             ";
@@ -466,6 +470,124 @@ SELECT OWNER || '.' || TABLE_NAME as table_name from DBA_TABLES where owner IN (
 
             // Trả về danh sách người dùng
             return roles;
+        }
+
+        public static List<String> getViews()
+        {
+            string query = "select distinct (OWNER || '.' || VIEW_NAME) from DBA_VIEWS WHERE OWNER <> 'SYS'";
+
+
+            List<string> views = new List<string>();
+
+            try
+            {
+                // Kiểm tra kết nối
+                //if (IsConnected())
+                {
+                    // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
+                    using (OracleCommand cmd = new OracleCommand(query, _connection))
+                    {
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Đọc dữ liệu và thêm vào danh sách
+                            while (reader.Read())
+                            {
+                                string v = reader[0].ToString();
+                                views.Add(v);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi nhận lỗi hoặc xử lý theo cách khác
+                Console.WriteLine("Truy vấn lỗi: " + ex.Message);
+                // Bạn có thể xử lý thêm lỗi hoặc ghi nhật ký lỗi nếu cần thiết
+            }
+
+            // Trả về danh sách người dùng
+            return views;
+        }
+
+        public static List<String> getFuncs()
+        {
+            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION' AND OWNER <> 'SYS'";
+
+            List<string> funcs = new List<string>();
+
+            try
+            {
+                // Kiểm tra kết nối
+                //if (IsConnected())
+                {
+                    // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
+                    using (OracleCommand cmd = new OracleCommand(query, _connection))
+                    {
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Đọc dữ liệu và thêm vào danh sách
+                            while (reader.Read())
+                            {
+                                string func = reader[0].ToString();
+                                funcs.Add(func);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi nhận lỗi hoặc xử lý theo cách khác
+                Console.WriteLine("Truy vấn lỗi: " + ex.Message);
+                // Bạn có thể xử lý thêm lỗi hoặc ghi nhật ký lỗi nếu cần thiết
+            }
+
+            // Trả về danh sách người dùng
+            return funcs;
+        }
+
+        public static List<String> getSPs()
+        {
+            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'PROCEDURE' AND OWNER <> 'SYS'";
+
+
+
+            List<string> sps = new List<string>();
+
+            try
+            {
+                // Kiểm tra kết nối
+                //if (IsConnected())
+                {
+                    // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
+                    using (OracleCommand cmd = new OracleCommand(query, _connection))
+                    {
+                  
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Đọc dữ liệu và thêm vào danh sách
+                            while (reader.Read())
+                            {
+                                string sp = reader[0].ToString();
+                                sps.Add(sp);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi nhận lỗi hoặc xử lý theo cách khác
+                Console.WriteLine("Truy vấn lỗi: " + ex.Message);
+                // Bạn có thể xử lý thêm lỗi hoặc ghi nhật ký lỗi nếu cần thiết
+            }
+
+            // Trả về danh sách người dùng
+            return sps;
         }
 
         public static bool GrantPerm(string query)

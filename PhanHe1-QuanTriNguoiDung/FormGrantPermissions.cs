@@ -24,6 +24,9 @@ namespace PhanHe1_QuanTriNguoiDung
         public BindingList<String> listRoles;
 
         public BindingList<String> listCols;
+        public BindingList<String> listFuncs;
+        public BindingList<String> listSPs;
+        public BindingList<String> listViews;
 
 
 
@@ -122,6 +125,9 @@ namespace PhanHe1_QuanTriNguoiDung
             string objPriv = objPrivComboBox.SelectedItem.ToString();
             string table = tablePrivComboBox.SelectedItem.ToString();
 
+            string func = funcComboBox.SelectedItem.ToString();
+            string sp = procedureComboBox.SelectedItem.ToString();
+
 
 
             // check if user has been chosen or not
@@ -132,7 +138,7 @@ namespace PhanHe1_QuanTriNguoiDung
             }
 
             // if not choose any permission type
-            if (sysPriv != "--Select--" || role != "--Select--" || objPriv != "--Select--")
+            if (sysPriv != "--Select--" || role != "--Select--" || objPriv != "--Select--" || sp != "--Select--" || func != "--Select--")
             { } 
             else
             {
@@ -203,6 +209,28 @@ namespace PhanHe1_QuanTriNguoiDung
                 res = DatabaseHandler.GrantPerm(query);
             }
 
+            if (func != "--Select--")
+            {
+                string query = $"GRANT EXECUTE ON {func} TO {user} ";
+                if (withGrantOpt)
+                {
+                    query += "WITH GRANT OPTION";
+                }
+                res = DatabaseHandler.GrantPerm(query);
+
+            }
+
+            if (sp != "--Select--")
+            {
+                string query = $"GRANT EXECUTE ON {sp} TO {user} ";
+                if (withGrantOpt)
+                {
+                    query += "WITH GRANT OPTION";
+                }
+                res = DatabaseHandler.GrantPerm(query);
+
+            }
+
             if (res)
             {
                 MessageBox.Show("Đã cấp quyền thành công!");
@@ -258,6 +286,18 @@ namespace PhanHe1_QuanTriNguoiDung
             listRoles.Insert(0, "--Select--");
             rolePrivComboBox.SelectedIndex = 0;
 
+            // sps and funcs
+            listFuncs = new BindingList<string>(DatabaseHandler.getFuncs());
+            listFuncs.Insert(0, "--Select--");
+            funcComboBox.DataSource = listFuncs;
+            funcComboBox.SelectedIndex = 0;
+
+            listSPs = new BindingList<string>(DatabaseHandler.getSPs());
+            listSPs.Insert(0, "--Select--");
+            procedureComboBox.DataSource = listSPs;
+            procedureComboBox.SelectedIndex = 0;
+
+
 
             #endregion
         }
@@ -288,6 +328,16 @@ namespace PhanHe1_QuanTriNguoiDung
                 colColPrivComboBox.SelectedIndex = 0;
             }
             withGrantOptCheckBox.Checked = false;
+        }
+
+        private void funcComboBox_selectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void procedureComboBox_slectionChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
