@@ -42,29 +42,56 @@ namespace PhanHe1_QuanTriNguoiDung
         private void objPrivComboBox_selectionChanged(object sender, EventArgs e)
         {
             string privName = objPrivComboBox.SelectedItem.ToString();
-            if (tablePrivComboBox.SelectedItem == null) return;
-            string tableName = tablePrivComboBox.SelectedItem.ToString();
 
-            if ((privName != "SELECT" || privName == "UPDATE") && tableName != "--Select--" )
-            {
-                // get all col name of that table
-                listCols = new BindingList<string>(DatabaseHandler.getColsOfTable(tableName));
-                listCols.Insert(0, "--Select--");
-                colColPrivComboBox.SelectedIndex = 0;
 
-            } else
+            // all tables
+            if (listTables == null)
             {
-                listCols = new BindingList<string>();
+                listTables = new BindingList<string>(DatabaseHandler.getTables(privName));
+                tablePrivComboBox.DataSource = listTables;
+                listTables.Insert(0, "--Select--");
+                tablePrivComboBox.SelectedIndex = 0;
             }
 
-            colColPrivComboBox.DataSource = listCols;
 
+            if ((privName == "SELECT" || privName == "UPDATE"))
+            {
+                if (tablePrivComboBox != null && tablePrivComboBox.SelectedItem != null && tablePrivComboBox.SelectedItem.ToString() != "--Select--")
+                {
+                    string tableName = tablePrivComboBox.SelectedItem.ToString();
+                    // get all col name of that table
+                    listCols = new BindingList<string>(DatabaseHandler.getColsOfTable(tableName));
+                    listCols.Insert(0, "--Select--");
+
+                    colColPrivComboBox.DataSource = listCols;
+                    colColPrivComboBox.SelectedIndex = 0;
+
+                }
+
+            }
 
         }
 
         private void tablePrivComboBox_selectionChanged(object sender, EventArgs e)
         {
+            string privName = objPrivComboBox.SelectedItem.ToString();
 
+
+            if ((privName == "SELECT" || privName == "UPDATE"))
+            {
+                if (tablePrivComboBox != null && tablePrivComboBox.SelectedItem != null && tablePrivComboBox.SelectedItem.ToString() != "--Select--")
+                {
+                    string tableName = tablePrivComboBox.SelectedItem.ToString();
+                    // get all col name of that table
+                    listCols = new BindingList<string>(DatabaseHandler.getColsOfTable(tableName));
+                    listCols.Insert(0, "--Select--");
+
+                    colColPrivComboBox.DataSource = listCols;
+                    colColPrivComboBox.SelectedIndex = 0;
+
+                }
+
+            }
         }
 
         private void rolePrivComboBox_selectionChanged(object sender, EventArgs e)
@@ -83,18 +110,105 @@ namespace PhanHe1_QuanTriNguoiDung
         }
         #endregion
 
-        private void selectCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void updateCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void confirmGrantBtn_clicked(object sender, EventArgs e)
         {
+            string user = userComboBox.SelectedItem.ToString();
+            bool withGrantOpt = withGrantOptCheckBox.Checked;
+
+            string sysPriv = sysPrivComboBox.SelectedItem.ToString();
+            string role = rolePrivComboBox.SelectedItem.ToString();
+
+            string objPriv = objPrivComboBox.SelectedItem.ToString();
+            string table = tablePrivComboBox.SelectedItem.ToString();
+
+
+
+            // check if user has been chosen or not
+            if (user == "--Select--")
+            {
+                MessageBox.Show("Vui lòng chọn user muốn cấp quyền!!!");
+                return;
+            }
+
+            // if not choose any permission type
+            if (sysPriv != "--Select--" || role != "--Select--" || objPriv != "--Select--")
+            { } 
+            else
+            {
+                MessageBox.Show("Vui lòng chọn quyền muốn cấp!!!");
+                return;
+            }
+            bool res = true;
+
+            // grant perm
+
+
+            if (objPriv != "--Select--")
+            {
+                if (table == "--Select--")
+                {
+                    MessageBox.Show("Vui lòng chọn Table!!!");
+                    return;
+                }
+                string query = "";
+
+                if ( objPriv == "UPDATE")
+                {
+                    if (colColPrivComboBox.SelectedItem == null || colColPrivComboBox.SelectedItem.ToString() == "--Select--")
+                    {
+                        MessageBox.Show($"Vui lòng chọn cột cho quyền {objPriv}!!!");
+                        return;
+                    }
+
+                    string col = colColPrivComboBox.SelectedItem.ToString();
+                    query = $"GRANT {objPriv} ({col}) ON {table} TO {user} ";
+                    
+                    if (withGrantOpt)
+                    {
+                        query += "WITH GRANT OPTION";
+                    }
+                    res = DatabaseHandler.GrantPerm(query);
+
+                } else
+                {
+                    query = $"GRANT {objPriv} on {table} TO {user} ";
+                }
+                if (withGrantOpt)
+                {
+                    query += "WITH GRANT OPTION";
+                }
+                res = DatabaseHandler.GrantPerm(query);
+
+            }
+
+            if (sysPriv != "--Select--")
+            {
+                string query = $"GRANT {sysPriv} TO {user} ";
+                if (withGrantOpt)
+                {
+                    query += "WITH GRANT OPTION";
+                }
+                res = DatabaseHandler.GrantPerm(query);
+                
+            }
+
+            if (role != "--Select--")
+            {
+                string query = $"GRANT {role} TO {user} ";
+                if (withGrantOpt)
+                {
+                    query += "WITH GRANT OPTION";
+                }
+                res = DatabaseHandler.GrantPerm(query);
+            }
+
+            if (res)
+            {
+                MessageBox.Show("Đã cấp quyền thành công!");
+            }
+
 
         }
 
@@ -122,17 +236,21 @@ namespace PhanHe1_QuanTriNguoiDung
             sysPrivComboBox.SelectedIndex = 0;
 
             // all object privileges
-            listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
+            // ... this for all objects: table, view, sp, func,...
+            //listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
+
+            // this just manipulate in table: 
+            listObjectPrivs = new BindingList<string>();
+            listObjectPrivs.Add("SELECT");
+            listObjectPrivs.Add("UPDATE");
+            listObjectPrivs.Add("INSERT");
+            listObjectPrivs.Add("DELETE");
+
             objPrivComboBox.DataSource = listObjectPrivs;
             listObjectPrivs.Insert(0, "--Select--");
             objPrivComboBox.SelectedIndex = 0;
 
 
-            // all tables
-            listTables = new BindingList<string>(DatabaseHandler.getTables());
-            tablePrivComboBox.DataSource = listTables;
-            listTables.Insert(0, "--Select--");
-            tablePrivComboBox.SelectedIndex = 0;
 
 
             // all roles
@@ -140,9 +258,6 @@ namespace PhanHe1_QuanTriNguoiDung
             rolePrivComboBox.DataSource = listRoles;
             listRoles.Insert(0, "--Select--");
             rolePrivComboBox.SelectedIndex = 0;
-
-            // cols
-            //colColPrivComboBox.DataSource = listCols;
 
 
             #endregion

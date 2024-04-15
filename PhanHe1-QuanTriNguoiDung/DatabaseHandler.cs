@@ -320,10 +320,26 @@ namespace PhanHe1_QuanTriNguoiDung
             return privs;
         }
 
-        public static List<string> getTables()
+        public static List<string> getTables(string priv)
         {
             //string query = "select distinct table_name from dba_tab_privs where owner = :username or (grantee = 'DBA' and grantable = 'YES')";
-            string query = "SELECT distinct table_name FROM DBA_TABLES ";
+            string query = @"
+                                select distinct table_name from
+(
+SELECT DISTINCT owner || '.' || table_name as table_name
+FROM dba_tab_privs
+WHERE grantee = 'DBA' 
+    AND privilege IN (:priv) AND GRANTABLE = 'YES'
+
+UNION
+
+SELECT OWNER || '.' || TABLE_NAME as table_name from DBA_TABLES where owner IN (
+    (select USERNAME from DBA_USERS where DEFAULT_TABLESPACE = 'USERS' and ACCOUNT_STATUS = 'OPEN')
+                           
+)
+)
+                        
+                            ";
 
             List<string> tables = new List<string>();
 
@@ -336,7 +352,7 @@ namespace PhanHe1_QuanTriNguoiDung
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
                         // Thêm tham số `@username` với giá trị của người dùng hiện tại.
-                        //cmd.Parameters.Add(new OracleParameter(":username", OracleDbType.Varchar2)).Value = currentUsername.ToUpper();
+                        cmd.Parameters.Add(new OracleParameter(":priv", OracleDbType.Varchar2)).Value = priv.ToUpper();
 
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
@@ -361,10 +377,23 @@ namespace PhanHe1_QuanTriNguoiDung
             return tables;
         }
 
-        public static List<string> getColsOfTable(string tableName)
+        public static List<string> getColsOfTable(string tableFullName)
         {
+            string owner, table;
+            // Tách chuỗi thành mảng chuỗi sử dụng dấu chấm làm ký tự phân cách
+            string[] parts = tableFullName.Split('.');
+
+            
+                // Gán hai phần tử vào các biến owner và table
+                owner = parts[0];
+                table = parts[1];
+
+
             List<string> cols = new List<string>();
-            string query = "SELECT * FROM :tableName ";
+            string query = @"
+                        SELECT COLUMN_NAME
+                        FROM all_tab_columns 
+                        WHERE OWNER = :val1 AND TABLE_NAME = :val2 ";
 
 
             try
@@ -375,16 +404,16 @@ namespace PhanHe1_QuanTriNguoiDung
                     // Sử dụng từ khóa using để quản lý tài nguyên của OracleCommand và OracleDataReader
                     using (OracleCommand cmd = new OracleCommand(query, _connection))
                     {
-                        // Thêm tham số `@username` với giá trị của người dùng hiện tại.
-                        cmd.Parameters.Add(new OracleParameter(":tableName", OracleDbType.Varchar2)).Value = tableName;
+                        cmd.Parameters.Add(new OracleParameter(":val1", OracleDbType.Varchar2)).Value = owner.ToUpper();
+                        cmd.Parameters.Add(new OracleParameter(":val2", OracleDbType.Varchar2)).Value = table.ToUpper();
 
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             // Đọc dữ liệu và thêm vào danh sách
                             while (reader.Read())
                             {
-                                string table = reader[0].ToString();
-                                cols.Add(table);
+                                string col = reader[0].ToString();
+                                cols.Add(col);
                             }
                         }
                     }
@@ -393,7 +422,7 @@ namespace PhanHe1_QuanTriNguoiDung
             catch (Exception ex)
             {
                 // Ghi nhận lỗi hoặc xử lý theo cách khác
-                Console.WriteLine("Truy vấn lỗi: " + ex.Message);
+                Console.WriteLine("Truy vấn lỗi: " + ex.Message + owner + table);
                 // Bạn có thể xử lý thêm lỗi hoặc ghi nhật ký lỗi nếu cần thiết
             }
 
@@ -437,14 +466,33 @@ namespace PhanHe1_QuanTriNguoiDung
             return roles;
         }
 
-
-        public static List<string> getTypes()
+        public static bool GrantPerm(string query)
         {
-            List<string> types = new List<string>();
-            types.Add("ROLE");
-            types.Add("SYSTEM");
-            types.Add("TABLE");
-            return types;
+            if (!IsConnected())
+            {
+                return false;
+            }
+
+
+            string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
+            ExecuteNonQuery(str);
+
+            try
+            {
+                OracleCommand cmd = new OracleCommand(query, _connection);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Truy vấn lỗi: " + ex.Message);
+                return false;
+            }
+
+            str = $"alter session set \"_ORACLE_SCRIPT\" = false";
+            ExecuteNonQuery(str);
+
+            return true;
         }
 
         public static bool RevokePrivilege(string user, string priv, string table)
@@ -557,6 +605,15 @@ namespace PhanHe1_QuanTriNguoiDung
             ExecuteNonQuery(str);
 
             return true;
+        }
+
+        public static List<string> getTypes()
+        {
+            List<string> types = new List<string>();
+            types.Add("ROLE");
+            types.Add("SYSTEM");
+            types.Add("TABLE");
+            return types;
         }
     }
 }
