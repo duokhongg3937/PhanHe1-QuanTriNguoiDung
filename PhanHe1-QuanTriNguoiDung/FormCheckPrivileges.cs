@@ -62,9 +62,13 @@ namespace PhanHe1_QuanTriNguoiDung
                 {
                     dataTable = DatabaseHandler.GetSysPrivileges(username);
                 }
-                else
+                else if (type == "TABLE")
                 {
                     dataTable = DatabaseHandler.GetTablePrivileges(username);
+                }
+                else
+                {
+                    dataTable = DatabaseHandler.GetColPrivileges(username);
                 }
             }
             checkGridView.DataSource = dataTable;

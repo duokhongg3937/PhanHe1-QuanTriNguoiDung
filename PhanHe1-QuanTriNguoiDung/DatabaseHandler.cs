@@ -701,9 +701,9 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
             return dataTable;
         }
 
-        public static DataTable GetPrivilegesUser(string username)
+        public static DataTable GetColPrivileges(string username)
         {
-            string selectQuery = $"select * from dba_sys_privs where grantee = '{username}'";
+            string selectQuery = $"select * from dba_col_privs where grantee = '{username}'";
 
             DataTable dataTable = ExecuteQuery(selectQuery);
 
@@ -737,6 +737,7 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
             types.Add("ROLE");
             types.Add("SYSTEM");
             types.Add("TABLE");
+            types.Add("COLUMN");
             return types;
         }
     }
