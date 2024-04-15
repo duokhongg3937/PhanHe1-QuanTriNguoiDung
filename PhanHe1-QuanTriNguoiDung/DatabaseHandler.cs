@@ -513,7 +513,7 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
 
         public static List<String> getFuncs()
         {
-            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION' AND OWNER <> 'SYS'";
+            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION' AND OWNER <> 'SYS' AND OWNER <> 'XDB'";
 
             List<string> funcs = new List<string>();
 
@@ -551,7 +551,7 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
 
         public static List<String> getSPs()
         {
-            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'PROCEDURE' AND OWNER <> 'SYS'";
+            string query = "select distinct (OWNER || '.' || OBJECT_NAME) from DBA_PROCEDURES WHERE OBJECT_TYPE = 'PROCEDURE' AND OWNER <> 'SYS' AND OWNER <> 'XDB'";
 
 
 

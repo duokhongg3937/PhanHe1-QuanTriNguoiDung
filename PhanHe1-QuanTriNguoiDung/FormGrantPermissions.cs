@@ -157,10 +157,14 @@ namespace PhanHe1_QuanTriNguoiDung
                     MessageBox.Show("Vui lòng chọn Table!!!");
                     return;
                 }
+
+
+
                 string query = "";
 
                 if ( objPriv == "UPDATE" || objPriv == "SELECT")
                 {
+                    
                     if (colColPrivComboBox.SelectedItem == null || colColPrivComboBox.SelectedItem.ToString() == "--Select--")
                     {
                         MessageBox.Show($"Vui lòng chọn cột cho quyền {objPriv}!!!");
@@ -173,7 +177,9 @@ namespace PhanHe1_QuanTriNguoiDung
                         query = $"GRANT {objPriv} ({col}) ON {table} TO {user} ";
                     } else
                     {
-                        query = $"GRANT {objPriv} ON {table} TO {user} ";
+                        query = $"CREATE OR REPLACE VIEW {table}_VIEW_{col.ToUpper()} AS SELECT {col} FROM {table}";
+                        res = DatabaseHandler.GrantPerm(query);
+                         query = $"GRANT SELECT ON {table}_VIEW_{col.ToUpper()} TO {user} ";
                     }
                     
                     if (withGrantOpt)
@@ -334,6 +340,8 @@ namespace PhanHe1_QuanTriNguoiDung
                 colColPrivComboBox.SelectedIndex = 0;
             }
             withGrantOptCheckBox.Checked = false;
+            procedureComboBox.SelectedIndex = 0;
+            funcComboBox.SelectedIndex = 0;
         }
 
         private void funcComboBox_selectionChanged(object sender, EventArgs e)
