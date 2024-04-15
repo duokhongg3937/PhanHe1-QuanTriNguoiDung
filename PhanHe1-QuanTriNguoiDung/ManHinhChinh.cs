@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PhanHe1_QuanTriNguoiDung
@@ -45,6 +46,9 @@ namespace PhanHe1_QuanTriNguoiDung
                 formUsers.FormClosed += FormUsers_FormClosed;
             }
 
+            setDefaultColor();
+            btnUsers.BackColor = Color.DimGray;
+
             showForm(formUsers);
         }
 
@@ -55,6 +59,9 @@ namespace PhanHe1_QuanTriNguoiDung
                 formRoles = new FormRoles();
                 formRoles.FormClosed += FormRoles_FormClosed; ;
             }
+
+            setDefaultColor();
+            btnRoles.BackColor = Color.DimGray;
 
             showForm(formRoles);
         }
@@ -77,6 +84,9 @@ namespace PhanHe1_QuanTriNguoiDung
                 formCheckPrivileges.FormClosed += FormCheck_FormClosed;
             }
 
+            setDefaultColor();
+            btnCheck.BackColor = Color.DimGray;
+
             showForm(formCheckPrivileges);
         }
 
@@ -87,7 +97,11 @@ namespace PhanHe1_QuanTriNguoiDung
             {
                 formPrivileges = new FormPrivileges();
                 formPrivileges.FormClosed += FormPrivileges_FormClosed;
+    
             }
+
+            setDefaultColor();
+            btnPrivilege.BackColor = Color.DimGray;
 
             showForm(formPrivileges);
         }
@@ -127,12 +141,24 @@ namespace PhanHe1_QuanTriNguoiDung
                 formGrantPermissions.FormClosed += FormGrantPermissions_FormClosed;
             }
 
+            setDefaultColor();
+            btnGrantPermission.BackColor = Color.DimGray;
+
             showForm(formGrantPermissions);
         }
 
         private void ManHinhChinh_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void setDefaultColor()
+        {
+            btnUsers.BackColor = Color.Black;
+            btnRoles.BackColor = Color.Black;
+            btnPrivilege.BackColor = Color.Black;
+            btnCheck.BackColor = Color.Black;
+            btnGrantPermission.BackColor = Color.Black;
         }
     }
 }

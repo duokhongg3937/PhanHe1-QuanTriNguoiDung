@@ -38,12 +38,14 @@
             this.btnPrivilege = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnGrantPermission = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -53,7 +55,7 @@
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Controls.Add(this.panel6);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -162,22 +164,39 @@
             this.btnCheck.Location = new System.Drawing.Point(-27, -8);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnCheck.Size = new System.Drawing.Size(271, 74);
+            this.btnCheck.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnCheck.Size = new System.Drawing.Size(271, 82);
             this.btnCheck.TabIndex = 3;
             this.btnCheck.Text = "Check Permission";
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // button1
+            // panel2
             // 
-            this.button1.Location = new System.Drawing.Point(3, 247);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 50);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Grant Permissions";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.grantPermBtn_clicked);
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.btnGrantPermission);
+            this.panel2.Location = new System.Drawing.Point(3, 246);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(267, 57);
+            this.panel2.TabIndex = 4;
+            // 
+            // btnGrantPermission
+            // 
+            this.btnGrantPermission.BackColor = System.Drawing.Color.Black;
+            this.btnGrantPermission.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantPermission.ForeColor = System.Drawing.Color.White;
+            this.btnGrantPermission.Image = ((System.Drawing.Image)(resources.GetObject("btnGrantPermission.Image")));
+            this.btnGrantPermission.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGrantPermission.Location = new System.Drawing.Point(-27, -9);
+            this.btnGrantPermission.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGrantPermission.Name = "btnGrantPermission";
+            this.btnGrantPermission.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnGrantPermission.Size = new System.Drawing.Size(271, 85);
+            this.btnGrantPermission.TabIndex = 4;
+            this.btnGrantPermission.Text = "Grant Permission";
+            this.btnGrantPermission.UseVisualStyleBackColor = false;
+            this.btnGrantPermission.Click += new System.EventHandler(this.grantPermBtn_clicked);
             // 
             // ManHinhChinh
             // 
@@ -201,7 +220,9 @@
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -214,8 +235,8 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnPrivilege;
-        private System.Windows.Forms.Button button1;
-
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnGrantPermission;
     }
 }
 
