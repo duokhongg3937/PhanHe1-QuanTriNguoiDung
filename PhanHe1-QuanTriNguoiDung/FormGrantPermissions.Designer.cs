@@ -107,7 +107,7 @@
             this.objPrivComboBox.AllowDrop = true;
             this.objPrivComboBox.FormattingEnabled = true;
             this.objPrivComboBox.ItemHeight = 13;
-            this.objPrivComboBox.Location = new System.Drawing.Point(154, 293);
+            this.objPrivComboBox.Location = new System.Drawing.Point(607, 139);
             this.objPrivComboBox.Name = "objPrivComboBox";
             this.objPrivComboBox.Size = new System.Drawing.Size(189, 21);
             this.objPrivComboBox.TabIndex = 9;
@@ -116,7 +116,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 282);
+            this.label4.Location = new System.Drawing.Point(429, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 38);
             this.label4.TabIndex = 8;
@@ -160,7 +160,7 @@
             this.rolePrivComboBox.AllowDrop = true;
             this.rolePrivComboBox.FormattingEnabled = true;
             this.rolePrivComboBox.ItemHeight = 13;
-            this.rolePrivComboBox.Location = new System.Drawing.Point(154, 374);
+            this.rolePrivComboBox.Location = new System.Drawing.Point(154, 293);
             this.rolePrivComboBox.Name = "rolePrivComboBox";
             this.rolePrivComboBox.Size = new System.Drawing.Size(189, 21);
             this.rolePrivComboBox.TabIndex = 14;
@@ -169,7 +169,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 374);
+            this.label6.Location = new System.Drawing.Point(17, 282);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(118, 38);
             this.label6.TabIndex = 13;
@@ -241,7 +241,7 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormGrantPermissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormPrivileges";

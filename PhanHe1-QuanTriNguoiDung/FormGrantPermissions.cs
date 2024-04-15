@@ -20,13 +20,15 @@ namespace PhanHe1_QuanTriNguoiDung
         public BindingList<String> listUsers;
         public BindingList<String> listSystemPrivs;
         public BindingList<String> listObjectPrivs;
-        public BindingList<string> listTables;
+        public BindingList<String> listTables;
         public BindingList<String> listRoles;
 
+        public BindingList<String> listCols;
 
 
 
 
+        #region all selection changed events
         private void userComboBox_selectionChanged(object sender, EventArgs e)
         {
 
@@ -39,6 +41,24 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void objPrivComboBox_selectionChanged(object sender, EventArgs e)
         {
+            string privName = objPrivComboBox.SelectedItem.ToString();
+            if (tablePrivComboBox.SelectedItem == null) return;
+            string tableName = tablePrivComboBox.SelectedItem.ToString();
+
+            if ((privName != "SELECT" || privName == "UPDATE") && tableName != "--Select--" )
+            {
+                // get all col name of that table
+                listCols = new BindingList<string>(DatabaseHandler.getColsOfTable(tableName));
+                listCols.Insert(0, "--Select--");
+                colColPrivComboBox.SelectedIndex = 0;
+
+            } else
+            {
+                listCols = new BindingList<string>();
+            }
+
+            colColPrivComboBox.DataSource = listCols;
+
 
         }
 
@@ -61,6 +81,7 @@ namespace PhanHe1_QuanTriNguoiDung
         {
 
         }
+        #endregion
 
         private void selectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -82,6 +103,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         }
 
+        #region all tasks need to do when load this form
         private void FormGrantPermissions_Load(object sender, EventArgs e)
         {
             #region get data for combo box
@@ -89,40 +111,43 @@ namespace PhanHe1_QuanTriNguoiDung
 
             listUsers = new BindingList<String>(DatabaseHandler.getListUsers());
             userComboBox.DataSource = listUsers;
-            listUsers.Add("--Select--");
-            userComboBox.SelectedIndex = listUsers.Count - 1;
+            listUsers.Insert(0, "--Select--");
+            userComboBox.SelectedIndex = 0;
 
 
             // all system privileges
             listSystemPrivs = new BindingList<string>(DatabaseHandler.getSystemPrivs());
             sysPrivComboBox.DataSource = listSystemPrivs;
-            listSystemPrivs.Add("--Select--");
-            sysPrivComboBox.SelectedIndex = listSystemPrivs.Count - 1;
+            listSystemPrivs.Insert(0, "--Select--");
+            sysPrivComboBox.SelectedIndex = 0;
 
             // all object privileges
             listObjectPrivs = new BindingList<string>(DatabaseHandler.getObjectPrivs());
             objPrivComboBox.DataSource = listObjectPrivs;
-            listObjectPrivs.Add("--Select--");
-            objPrivComboBox.SelectedIndex = listObjectPrivs.Count - 1; 
+            listObjectPrivs.Insert(0, "--Select--");
+            objPrivComboBox.SelectedIndex = 0;
 
 
             // all tables
             listTables = new BindingList<string>(DatabaseHandler.getTables());
             tablePrivComboBox.DataSource = listTables;
-            listTables.Add("--Select--");
-            tablePrivComboBox.SelectedIndex = listTables.Count - 1;
+            listTables.Insert(0, "--Select--");
+            tablePrivComboBox.SelectedIndex = 0;
 
 
             // all roles
             listRoles = new BindingList<string>(DatabaseHandler.getRoles());
             rolePrivComboBox.DataSource = listRoles;
-            listRoles.Add("--Select--");
-            rolePrivComboBox.SelectedIndex = listRoles.Count - 1;
+            listRoles.Insert(0, "--Select--");
+            rolePrivComboBox.SelectedIndex = 0;
 
+            // cols
+            //colColPrivComboBox.DataSource = listCols;
 
 
             #endregion
         }
+        #endregion
 
         private void userComboBox_DropDownOpened(object sender, EventArgs e)
         {

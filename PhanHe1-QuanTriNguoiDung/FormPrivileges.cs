@@ -76,28 +76,42 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void revokePermBtn_clicked(object sender, EventArgs e)
         {
-            //if (privsGridView.SelectedRows.Count <= 0)
-            //{
-            //    MessageBox.Show("Vui lòng chọn 1 dòng quyền bất kỳ để xóa");
-            //    return;
-            //}
-            //else if (privsGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
-            //{
-            //    DataRow selectedRow = selectedDataRowView.Row;
-            //    string username = (string)selectedRow["USERNAME"];
+            if (privsGridView.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 dòng quyền bất kỳ để thu hồi");
+                return;
+            }
+            else if (privsGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+            {
+                DataRow selectedRow = selectedDataRowView.Row;
+                string user = (string)selectedRow["GRANTEE"];
+                string priv = (string)selectedRow["PRIVILEGE"];
+                string owner = (string)selectedRow["OWNER"];
+                string table = (string)selectedRow["TABLE_NAME"];
 
-            //    DialogResult res = MessageBox.Show($"Bạn đã chọn user: {username} \n\n\n Bạn có chắc chắn muốn xóa user này?",
-            //            "Xác nhận xóa người dùng", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                string fullTableName = owner + "." + table;
+                
 
-            //    if (res == DialogResult.Yes)
-            //    {
-            //        if (DatabaseHandler.DropUser(username))
-            //        {
-            //            MessageBox.Show($"Thành công xóa user {username}", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            Helper.reloadUserTable(privsGridView);
-            //        }
-            //    }
-            //}
+                DialogResult res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {priv} trên table {fullTableName} từ {user}?",
+                        "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    if (DatabaseHandler.RevokePrivilege(user, priv, fullTableName))
+                    {
+                        MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (privsGridView != null)
+                        {
+                            string selectAllPrivilegesQuery = query + condition;
+
+                            DataTable dataTable = DatabaseHandler
+                                .ExecuteQuery(selectAllPrivilegesQuery);
+                            privsGridView.DataSource = dataTable;
+                        }
+
+                    }
+                }
+            }
         }
 
         private void privCell_clicked(object sender, DataGridViewCellEventArgs e)
