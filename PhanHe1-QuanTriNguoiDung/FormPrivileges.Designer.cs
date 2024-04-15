@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCol = new System.Windows.Forms.Button();
-            this.btnTableName = new System.Windows.Forms.Button();
+            this.btnTableView = new System.Windows.Forms.Button();
             this.privsGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRole = new System.Windows.Forms.Button();
@@ -52,17 +52,17 @@
             this.btnCol.UseVisualStyleBackColor = true;
             this.btnCol.Click += new System.EventHandler(this.btnCol_Click);
             // 
-            // btnTableName
+            // btnTableView
             // 
-            this.btnTableName.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnTableName.Location = new System.Drawing.Point(14, 58);
-            this.btnTableName.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTableName.Name = "btnTableName";
-            this.btnTableName.Size = new System.Drawing.Size(94, 33);
-            this.btnTableName.TabIndex = 7;
-            this.btnTableName.Text = "TableName";
-            this.btnTableName.UseVisualStyleBackColor = true;
-            this.btnTableName.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnTableView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnTableView.Location = new System.Drawing.Point(14, 58);
+            this.btnTableView.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTableView.Name = "btnTableView";
+            this.btnTableView.Size = new System.Drawing.Size(94, 33);
+            this.btnTableView.TabIndex = 7;
+            this.btnTableView.Text = "Table/View";
+            this.btnTableView.UseVisualStyleBackColor = true;
+            this.btnTableView.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // privsGridView
             // 
@@ -161,7 +161,7 @@
             this.Controls.Add(this.buttonRole);
             this.Controls.Add(this.buttonUser);
             this.Controls.Add(this.btnCol);
-            this.Controls.Add(this.btnTableName);
+            this.Controls.Add(this.btnTableView);
             this.Controls.Add(this.privsGridView);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -178,7 +178,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnCol;
-        private System.Windows.Forms.Button btnTableName;
+        private System.Windows.Forms.Button btnTableView;
         private System.Windows.Forms.DataGridView privsGridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRole;

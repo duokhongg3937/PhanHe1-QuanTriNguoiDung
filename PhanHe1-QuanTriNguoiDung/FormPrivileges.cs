@@ -19,8 +19,8 @@ namespace PhanHe1_QuanTriNguoiDung
 
         }
         // query mặc định
-        private string query = "SELECT t.* FROM DBA_TAB_PRIVS t WHERE t.GRANTEE ";
-        private string condition = " IN (SELECT USERNAME FROM DBA_USERS WHERE ACCOUNT_STATUS = 'OPEN')";
+        private string query = "SELECT GRANTEE,OWNER,TABLE_NAME,PRIVILEGE,TYPE FROM DBA_TAB_PRIVS t WHERE t.GRANTEE ";
+        private string condition = " IN (SELECT USERNAME FROM DBA_USERS)";
 
         private void FormPrivileges_Load(object sender, EventArgs e)
         {
@@ -33,8 +33,8 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Nut table name
-            query = "SELECT t.* FROM DBA_TAB_PRIVS t WHERE t.GRANTEE ";
+            // Nut table/view name
+            query = "SELECT GRANTEE,OWNER,TABLE_NAME,PRIVILEGE,TYPE FROM DBA_TAB_PRIVS t WHERE t.GRANTEE ";
 
             string selectAllPrivilegesQuery = query + condition;
 
@@ -45,7 +45,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void btnCol_Click(object sender, EventArgs e)
         {
-            query = "SELECT t.* FROM DBA_COL_PRIVS t WHERE t.GRANTEE ";
+            query = "SELECT GRANTEE,OWNER,TABLE_NAME,COLUMN_NAME,PRIVILEGE FROM DBA_COL_PRIVS t WHERE t.GRANTEE ";
 
             string selectAllPrivilegesQuery = query + condition;
 
@@ -56,7 +56,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         private void buttonUser_Click(object sender, EventArgs e)
         {
-            condition = " IN (SELECT USERNAME FROM DBA_USERS WHERE ACCOUNT_STATUS = 'OPEN')";
+            condition = " IN (SELECT USERNAME FROM DBA_USERS)";
             string selectAllPrivilegesQuery = query + condition;
 
             DataTable dataTable = DatabaseHandler
