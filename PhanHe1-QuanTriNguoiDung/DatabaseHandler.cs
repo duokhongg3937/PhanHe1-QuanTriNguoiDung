@@ -391,6 +391,15 @@ namespace PhanHe1_QuanTriNguoiDung
             return roles;
         }
 
+        public static List<string> getTypes()
+        {
+            List<string> types = new List<string>();
+            types.Add("ROLE");
+            types.Add("SYSTEM");
+            types.Add("TABLE");
+            return types;
+        }
+
         #endregion
 
         public static DataTable GetAllUsers()
@@ -409,6 +418,33 @@ namespace PhanHe1_QuanTriNguoiDung
             string selectAllRolesQuery = "select ROLE, ROLE_ID, PASSWORD_REQUIRED from DBA_ROLES";
 
             DataTable dataTable = ExecuteQuery(selectAllRolesQuery);
+
+            return dataTable;
+        }
+
+        public static DataTable GetSysPrivileges(string username)
+        {
+            string selectQuery = $"select * from dba_sys_privs where grantee = '{username}'";
+
+            DataTable dataTable = ExecuteQuery(selectQuery);
+
+            return dataTable;
+        }
+
+        public static DataTable GetRolePrivileges(string username)
+        {
+            string selectQuery = $"select * from dba_role_privs where grantee = '{username}'";
+
+            DataTable dataTable = ExecuteQuery(selectQuery);
+
+            return dataTable;
+        }
+
+        public static DataTable GetTablePrivileges(string username)
+        {
+            string selectQuery = $"select * from dba_tab_privs where grantee = '{username}'";
+
+            DataTable dataTable = ExecuteQuery(selectQuery);
 
             return dataTable;
         }

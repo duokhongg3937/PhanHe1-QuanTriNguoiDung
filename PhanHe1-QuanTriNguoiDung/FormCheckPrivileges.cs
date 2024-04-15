@@ -19,8 +19,14 @@ namespace PhanHe1_QuanTriNguoiDung
 
 
         public BindingList<String> listUsers;
+        public BindingList<String> listTypes;
 
         private void userComboBox_selectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_selectionChanged(object sender, EventArgs e)
         {
 
         }
@@ -38,7 +44,24 @@ namespace PhanHe1_QuanTriNguoiDung
         private void confirmGrantBtn_clicked(object sender, EventArgs e)
         {
             string username = (string)userComboBox.SelectedValue;
-            DataTable dataTable = DatabaseHandler.GetPrivilegesUser(username);
+            string type = (string)comboBox1.SelectedValue;
+
+            DataTable dataTable = null;
+
+            if (type == "ROLE")
+            {
+                dataTable = DatabaseHandler.GetRolePrivileges(username);
+            }
+            else if (type == "SYSTEM")
+            {
+                dataTable = DatabaseHandler.GetSysPrivileges(username);
+            }
+            else
+            {
+                dataTable = DatabaseHandler.GetTablePrivileges(username);
+            }
+
+
             checkGridView.DataSource = dataTable;
         }
 
@@ -52,11 +75,15 @@ namespace PhanHe1_QuanTriNguoiDung
             listUsers.Add("--Select--");
             userComboBox.SelectedIndex = listUsers.Count - 1;
 
+            // all types for combo box
+
+            listTypes = new BindingList<String>(DatabaseHandler.getTypes());
+            comboBox1.DataSource = listTypes;
+            listTypes.Add("--Select--");
+            comboBox1.SelectedIndex = listTypes.Count - 1;
+
             #endregion
         }
-
-
-
         private void userComboBox_DropDownOpened(object sender, EventArgs e)
         {
             // Thay đổi màu nền khi dropdown mở
@@ -67,6 +94,18 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             // Thay đổi màu nền khi dropdown đóng
             userComboBox.ForeColor = Color.BlueViolet;
+        }
+
+        private void comboBox1_DropDownOpened(object sender, EventArgs e)
+        {
+            // Thay đổi màu nền khi dropdown mở
+            comboBox1.ForeColor = Color.Blue;
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            // Thay đổi màu nền khi dropdown đóng
+            comboBox1.ForeColor = Color.BlueViolet;
         }
     }
 }

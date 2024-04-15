@@ -33,6 +33,8 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.checkGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +66,7 @@
             // btnCheck
             // 
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCheck.Location = new System.Drawing.Point(555, 88);
+            this.btnCheck.Location = new System.Drawing.Point(781, 81);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(126, 41);
             this.btnCheck.TabIndex = 2;
@@ -79,6 +81,9 @@
             this.userComboBox.Name = "userComboBox";
             this.userComboBox.Size = new System.Drawing.Size(285, 24);
             this.userComboBox.TabIndex = 3;
+            this.userComboBox.DropDown += new System.EventHandler(this.userComboBox_DropDownOpened);
+            this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_selectionChanged);
+            this.userComboBox.DropDownClosed += new System.EventHandler(this.userComboBox_DropDownClosed);
             // 
             // label2
             // 
@@ -89,10 +94,27 @@
             this.label2.Size = new System.Drawing.Size(76, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "User: ";
-
-            this.userComboBox.DropDown += new System.EventHandler(this.userComboBox_DropDownOpened);
-            this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_selectionChanged);
-            this.userComboBox.DropDownClosed += new System.EventHandler(this.userComboBox_DropDownClosed);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label3.Location = new System.Drawing.Point(517, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 29);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Type: ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(613, 98);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(119, 24);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDownOpened);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_selectionChanged);
+            this.comboBox1.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
             // 
             // FormCheckPrivileges
             // 
@@ -101,6 +123,8 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1175, 745);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.userComboBox);
             this.Controls.Add(this.btnCheck);
@@ -111,10 +135,11 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormCheckPrivileges";
-            ((System.ComponentModel.ISupportInitialize)(this.checkGridView)).EndInit();
             this.Load += new System.EventHandler(this.FormGrantPermissions_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.checkGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -124,6 +149,8 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.ComboBox userComboBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
         //  private System.Windows.Forms.Button btnRefresh;
         //  private System.Windows.Forms.Button btnDelete;
     }
