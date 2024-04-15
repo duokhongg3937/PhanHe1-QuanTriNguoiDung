@@ -619,7 +619,7 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
             return true;
         }
 
-        public static bool RevokePrivilege(string user, string priv, string table)
+        public static bool RevokePrivilege(string user, string query)
         {
             if (!IsConnected())
             {
@@ -630,13 +630,9 @@ select distinct (OWNER || '.' || VIEW_NAME) as table_name from DBA_VIEWS WHERE O
             string str = $"alter session set \"_ORACLE_SCRIPT\" = true";
             ExecuteNonQuery(str);
 
-            str = $"REVOKE {priv} ON {table} FROM {user}";
-
-
-
             try
             {
-                    OracleCommand cmd = new OracleCommand(str, _connection);
+                    OracleCommand cmd = new OracleCommand(query, _connection);
                      cmd.ExecuteNonQuery();
 
             }

@@ -159,7 +159,7 @@ namespace PhanHe1_QuanTriNguoiDung
                 }
                 string query = "";
 
-                if ( objPriv == "UPDATE")
+                if ( objPriv == "UPDATE" || objPriv == "SELECT")
                 {
                     if (colColPrivComboBox.SelectedItem == null || colColPrivComboBox.SelectedItem.ToString() == "--Select--")
                     {
@@ -168,7 +168,13 @@ namespace PhanHe1_QuanTriNguoiDung
                     }
 
                     string col = colColPrivComboBox.SelectedItem.ToString();
-                    query = $"GRANT {objPriv} ({col}) ON {table} TO {user} ";
+                    if (objPriv == "UPDATE")
+                    {
+                        query = $"GRANT {objPriv} ({col}) ON {table} TO {user} ";
+                    } else
+                    {
+                        query = $"GRANT {objPriv} ON {table} TO {user} ";
+                    }
                     
                     if (withGrantOpt)
                     {

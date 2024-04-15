@@ -114,45 +114,6 @@ namespace PhanHe1_QuanTriNguoiDung
             }
         }
 
-        private void revokePermBtn_clicked(object sender, EventArgs e)
-        {
-            if (privsGridView.SelectedRows.Count <= 0)
-            {
-                MessageBox.Show("Vui lòng chọn 1 dòng quyền bất kỳ để thu hồi");
-                return;
-            }
-            else if (privsGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
-            {
-                DataRow selectedRow = selectedDataRowView.Row;
-                string user = (string)selectedRow["GRANTEE"];
-                string priv = (string)selectedRow["PRIVILEGE"];
-                string owner = (string)selectedRow["OWNER"];
-                string table = (string)selectedRow["TABLE_NAME"];
-
-                string fullTableName = owner + "." + table;
-                
-
-                DialogResult res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {priv} trên table {fullTableName} từ {user}?",
-                        "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (res == DialogResult.Yes)
-                {
-                    if (DatabaseHandler.RevokePrivilege(user, priv, fullTableName))
-                    {
-                        MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (privsGridView != null)
-                        {
-                            selectAllPrivilegesQuery = query + condition + condition2;
-
-                            DataTable dataTable = DatabaseHandler
-                                .ExecuteQuery(selectAllPrivilegesQuery);
-                            privsGridView.DataSource = dataTable;
-                        }
-
-                    }
-                }
-            }
-        }
 
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {

@@ -36,7 +36,6 @@
             this.buttonUser = new System.Windows.Forms.Button();
             this.text1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.revokeBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
@@ -141,17 +140,6 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Mặc định chọn TableName";
             // 
-            // revokeBtn
-            // 
-            this.revokeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revokeBtn.Location = new System.Drawing.Point(488, 51);
-            this.revokeBtn.Name = "revokeBtn";
-            this.revokeBtn.Size = new System.Drawing.Size(96, 28);
-            this.revokeBtn.TabIndex = 12;
-            this.revokeBtn.Text = "Thu hồi";
-            this.revokeBtn.UseVisualStyleBackColor = true;
-            this.revokeBtn.Click += new System.EventHandler(this.revokePermBtn_clicked);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -194,7 +182,6 @@
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.revokeBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text1);
             this.Controls.Add(this.buttonRole);
@@ -224,7 +211,6 @@
         private System.Windows.Forms.Button buttonUser;
         private System.Windows.Forms.Label text1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button revokeBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.TextBox usernameTextBox;

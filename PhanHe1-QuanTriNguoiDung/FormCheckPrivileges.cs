@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace PhanHe1_QuanTriNguoiDung
 
         public BindingList<String> listUsers;
         public BindingList<String> listTypes;
+        public string currentType;
 
         private void userComboBox_selectionChanged(object sender, EventArgs e)
         {
@@ -56,18 +58,22 @@ namespace PhanHe1_QuanTriNguoiDung
             {
                 if (type == "ROLE")
                 {
+                    currentType = "ROLE";
                     dataTable = DatabaseHandler.GetRolePrivileges(username);
                 }
                 else if (type == "SYSTEM")
                 {
+                    currentType = "SYSTEM";
                     dataTable = DatabaseHandler.GetSysPrivileges(username);
                 }
                 else if (type == "TABLE")
                 {
+                    currentType = "TABLE";
                     dataTable = DatabaseHandler.GetTablePrivileges(username);
                 }
                 else
                 {
+                    currentType = "COL";
                     dataTable = DatabaseHandler.GetColPrivileges(username);
                 }
             }
@@ -115,6 +121,144 @@ namespace PhanHe1_QuanTriNguoiDung
         {
             // Thay đổi màu nền khi dropdown đóng
             comboBox1.ForeColor = Color.BlueViolet;
+        }
+
+        private void revokePrivBtn_clicked(object sender, EventArgs e)
+        {
+            if (checkGridView.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 dòng quyền bất kỳ để thu hồi");
+                return;
+            }
+            else if (checkGridView.SelectedRows[0].DataBoundItem is DataRowView selectedDataRowView)
+            {
+                DataRow selectedRow = selectedDataRowView.Row;
+                string user = (string)selectedRow["GRANTEE"];
+
+
+                switch (currentType)
+                {
+
+                    case "ROLE":
+                        string role = (string)selectedRow["GRANTED_ROLE"];
+
+                        string query = $"REVOKE {role} FROM {user} ";
+
+                        DialogResult res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {role} từ {user}?",
+                                "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            if (DatabaseHandler.RevokePrivilege(user, query))
+                            {
+                                MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (checkGridView != null)
+                                {
+
+                                    
+                                      DataTable  dataTable = DatabaseHandler.GetRolePrivileges(user);
+                                   
+
+                                    checkGridView.DataSource = dataTable;
+                                }
+
+                            }
+                        }
+
+                        break;
+
+                    case "SYSTEM":
+                        string priv = (string)selectedRow["PRIVILEGE"];
+                        query = $"REVOKE {priv} FROM {user} ";
+
+                        res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {priv} từ {user}?",
+                                "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            if (DatabaseHandler.RevokePrivilege(user, query))
+                            {
+                                MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (checkGridView != null)
+                                {
+
+                                    
+                                   
+                                    DataTable    dataTable = DatabaseHandler.GetSysPrivileges(user);
+                                    
+
+                                    checkGridView.DataSource = dataTable;
+                                }
+
+                            }
+                        }
+
+                        break;
+
+                    case "TABLE":
+                        string table = (string)selectedRow["TABLE_NAME"];
+                        string owner = (string)selectedRow["OWNER"];
+                        priv = (string)selectedRow["PRIVILEGE"];
+
+                        query = $"REVOKE {priv} ON {owner + '.' + table} FROM {user} ";
+
+                        res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {priv} trên {owner + '.' + table} từ {user}?",
+                                "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            if (DatabaseHandler.RevokePrivilege(user, query))
+                            {
+                                MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (checkGridView != null)
+                                {
+
+                                    DataTable dataTable = DatabaseHandler.GetTablePrivileges(user);
+
+
+                                    checkGridView.DataSource = dataTable;
+                                }
+
+                            }
+                        }
+                        break;
+
+                    case "COL":
+                        string col = (string)selectedRow["COLUMN_NAME"];
+                        table = (string)selectedRow["TABLE_NAME"];
+                        owner = (string)selectedRow["OWNER"];
+                        priv = (string)selectedRow["PRIVILEGE"];
+
+                        query = $"REVOKE {priv} ON {owner + '.' + table} FROM {user} ";
+
+                        res = MessageBox.Show($" Bạn có chắc chắn muốn thu hồi quyền {priv} trên bảng {owner + '.' + table} từ {user}?",
+                                "Xác nhận thu hồi quyền", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            if (DatabaseHandler.RevokePrivilege(user, query))
+                            {
+                                MessageBox.Show($"Đã thu hồi quyền thành công!", "Thu hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (checkGridView != null)
+                                {
+
+                                    DataTable dataTable = DatabaseHandler.GetColPrivileges(user);
+
+
+                                    checkGridView.DataSource = dataTable;
+                                }
+
+                            }
+                        }
+                        break;
+                }
+
+            }
+            }
+
+        private void cellContentPriv_clicked(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
